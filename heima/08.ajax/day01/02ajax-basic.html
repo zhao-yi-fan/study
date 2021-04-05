@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        
+        xhr.open('GET', './time.php');
+        
+        xhr.send()
+        
+        //因为客户端永远不知道服务端何时才能返回我们需要的响应
+        //所以AJAX API采用事件的机制(通知的感觉)
+        //现在这么写,之后会改
+        xhr.onreadystatechange = function(){
+            console.log(1);
+        }
+
+
+        //因为响应需要时间,无法通过返回值的方式返回响应
+        //var response = xhr.send();
+        //console.log(response)
+    </script>
+</body>
+</html>

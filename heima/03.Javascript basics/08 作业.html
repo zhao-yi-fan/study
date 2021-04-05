@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //调用objcet创建对象1
+        var computer = new Object();
+        computer.color = "white";
+        computer.weight = "2kg";
+        computer.size = "15.6";
+        computer.brand = "iMac";
+        computer.movie = function () {
+            console.log("看电影");
+        };
+        computer.music = function () {
+            console.log("听音乐");
+        };
+        computer.playGame = function () {
+            console.log("打游戏");
+        };
+        computer.code = function () {
+            console.log("敲代码");
+        };
+        //调用object创建对象2
+        var computer = new Object();
+        computer.color = "white";
+        computer.weight = "2kg";
+        computer.size = "15.6";
+        computer.brand = "mi";
+        computer.playGame = function () {
+            console.log("打游戏");
+        };
+        computer.music = function () {
+            console.log("听音乐");
+        };
+        computer.movie = function () {
+            console.log("看电影");
+        };
+        computer.code = function () {
+            console.log("敲代码");
+        };
+
+        //工厂模式创建对象
+        function creatObject(color, weight, size, brand) {
+            var obj = new Object();
+            obj.color = color;
+            obj.weight = weight;
+            obj.size = size;
+            obj.brand = brand;
+            obj.playGame = function () {
+                console.log("打游戏");
+            };
+            obj.music = function () {
+                console.log("听音乐");
+            };
+            obj.movie = function () {
+                console.log("看电影");
+            };
+            obj.code = function () {
+                console.log("敲代码");
+            };
+        }
+
+        //自定义构造函数创建对象1
+        function Computer(color, weight, size, brand) {
+            this.color = color;
+            this.weight = weight;
+            this.brand = brand;
+            this.size = size;
+            this.movie = function () {
+                console.log("看电影");
+            };
+            this.music = function () {
+                console.log("听音乐");
+            };
+            this.playGame = function () {
+                console.log("玩游戏");
+            };
+            this.code = function () {
+                console.log("敲代码");
+            };
+        }
+
+        var comp1 = new Computer("white", "2kg", "15", "mi");
+        console.log("color:" + comp1.color + ",weight:" + comp1.weight + ",brand:" + comp1.brand + ",size:" + comp1.size);
+
+
+        //自定义构造函数创建对象2
+        function Computer(color, weight, size, brand) {
+            this.color = color;
+            this.weight = weight;
+            this.size = size;
+            this.brand = brand;
+            this.playGame = function () {
+                console.log("打游戏");
+            };
+            this.movie = function () {
+                console.log("看电影");
+            };
+            this.music = function () {
+                console.log("听音乐");
+            };
+            this.code = function () {
+                console.log("敲代码");
+            };
+        }
+
+        var comp2 = new Computer("purple", "3kg", "15.2", "mi");
+
+
+        //字面量方式创建对象1
+        var computer1 = {};
+        computer1.color = "white";
+        computer1.size = "15.6";
+        computer1.weight = "2kg";
+        computer1.brand = "huawei";
+        computer1.playGame = function () {
+            console.log("打游戏");
+        };
+        computer1.music = function () {
+            console.log("听音乐");
+        };
+        computer1.movie = function () {
+            console.log("看电影");
+        };
+        computer1.code = function () {
+            console.log("敲代码");
+        };
+        //字面量方式创建对象2
+        var computer2 = {};
+        computer2.color = "white";
+        computer2.weight = "2kg";
+        computer2.size = "15.6";
+        computer2.brand = "mi";
+        computer2.playGame = function () {
+            console.log("打游戏");
+        };
+        computer2.music = function () {
+            console.log("听音乐");
+        };
+        computer2.movie = function () {
+            console.log("看电影");
+        };
+        computer.code = function () {
+            console.log("敲代码");
+        };
+
+        //button
+        //调用object创建对象1
+        var btn = new Object();
+        btn.width = "20px";
+        btn.height = "20px";
+        btn.bgc = "pink";
+        btn.active = function () {
+            console.log("鼠标点击");
+        };
+        btn.visited = function () {
+            console.log("鼠标点击后");
+        };
+        //调用objcet创建对象2
+        var btn2 = new Object();
+        btn2.width = "30px";
+        btn2.height = "30px";
+        btn2.bgc = "yellow";
+        btn2.active = function () {
+            console.log("鼠标点击");
+        };
+        btn2.visited = function () {
+            console.log("鼠标点击后");
+        };
+
+        //自定义构造函数创建对象1
+        function Button(width, height, bgc) {
+            this.width = width;
+            this.height = height;
+            this.bgc = bgc;
+            this.active = function () {
+                console.log("鼠标点击");
+            };
+            this.visited = function () {
+                console.log("鼠标点击后");
+            };
+
+        }
+
+        var btn1 = new Button("20px", "20px", "pink");
+        console.log("width:" + btn1.width);
+
+        //自定义构造函数创建对象2
+        function Button(width, height, bgc) {
+            this.width = width;
+            this.height = height;
+            this.bgc = bgc;
+            this.active = function () {
+                console.log("鼠标点击");
+            };
+            this.visited = function () {
+                console.log("鼠标点击后");
+            };
+        }
+
+        var btn2 = new Button("30px", "30px", "blue");
+        console.log("bgc:" + btn2.bgc);
+
+
+        //字面量创建对象1
+        var btn1 = {};
+        btn1.width = "40px";
+        btn1.height = "40px";
+        btn1.bgc = "blue";
+        btn1.active = function () {
+            console.log("鼠标点击");
+        };
+        btn1.visited = function () {
+            console.log("鼠标点击后");
+        };
+        //字面量创建对象2
+        var btn2 = {};
+        btn2.width = "40px";
+        btn2.height = "30px";
+        btn2.bgc = "blue";
+        btn2.active = function () {
+            console.log("鼠标点击");
+        };
+        btn2.visited = function () {
+            console.log("鼠标点击后");
+        };
+        //另一种写法1
+        var btn = {
+            width: "40px",
+            height: "40px",
+            bgc: "yellow",
+            active: function(){
+                console.log("鼠标点击");
+            },
+            visited: function(){
+                console.log("鼠标点击后");
+            }
+        };
+        //另一种写法2
+        var btn2 = {
+            width: "20px",
+            height: "20px",
+            bgc: "pink",
+            active: function(){
+                console.log("鼠标点击");
+            },
+            visited:function(){
+                console.log("鼠标点击后");
+            }
+        };
+
+
+
+        console.log(Math.abs(-12.3));//绝对值
+        console.log(Math.PI);
+        console.log(parseInt(Math.random() * 100) + 1);
+        console.log(Math.E);
+        console.log(Math.ceil(12.001));
+        console.log(Math.floor(12.999));
+        console.log(Math.max(10, 20, 33, 44, 55));
+        console.log(Math.min(10, 20, 33, 44, 55));
+        console.log(Math.sqrt(4));
+        console.log(Math.fround(4.4444));
+        console.log(Math.pow(2, 3));//前面的是底数,后面是指数
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- .native 修饰符 相当于给组件的模板最外层添加事件 -->
+    <!-- <my-button @click.native="show2"></my-button> -->
+    <my-button @click="show2" @mouseup="show1"></my-button>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('my-button',{
+      data(){
+        return {msg:'点我啊'}
+      },
+      // this.$attrs (v-bind) this.$listeners (v-on)
+      // 一个个传递方法
+      // template:`<div><button @mouseup="$listeners.mouseup" @click="$listeners.click">{{msg}}</button></div>`,
+      // 把事件整体传入 事件必须是存在的事件
+      // template: `<div><button v-on="$listeners">{{msg}}</button></div>`,
+      // 触发自己身上的click事件
+      template: `<div><button @click="$emit('click')">{{msg}}</button></div>`,
+      
+
+    })
+    let vm = new Vue({
+      el: '#app',
+      methods:{
+        show1(){
+          console.log('父亲111')
+        },
+        show2(){
+          console.log('父亲222')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

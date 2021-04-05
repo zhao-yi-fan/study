@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		div {
+			width: 200px;
+			height: 100px;
+			background-color: purple;
+			left: 100px;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="btn" value="显示效果" />
+	<div id="dv"></div>
+	<script src="common.js"></script>
+	<script>
+		my$("btn").onclick = function(){
+			//获取元素距离左边位置的值,并不是获取元素left的值,这两个是有区别的
+			//console.log(my$("dv").offsetLeft);
+			//谷歌,火狐支持
+			// console.log(window.getComputedStyle(my$("dv"),null).left);
+			// console.log(window.getComputedStyle(my$("dv"),null)["left"]);
+			//IE8支持
+			//console.log(my$("dv").currentStyle.left);
+
+			console.log(getStyle(my$("dv"),"left"));
+		}
+
+		// function getStyle(element,attr){
+		// 	if(window.getComputedStyle){
+
+		// 		return window.getComputedStyle(element,null)[attr];
+		// 	}else{
+		// 		return element.currentStyle[attr];
+		// 	}
+		// }
+
+		function getStyle(element,attr){
+			return window.getComputedStyle?window.getComputedStyle(element,null)[attr]:element.currentStyle[attr];
+		}
+	</script>
+</body>
+</html>

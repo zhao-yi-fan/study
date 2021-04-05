@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //连续调用f1函数
+        function f1() {
+            var num = 10;
+            num++;
+            console.log(num);
+
+        }
+
+        f1();
+        f1();
+        f1();
+
+
+
+        // //f1函数只调用了一次
+        // function f1() {
+        //     var num = 10;
+        //     return function () {
+        //         num++;
+        //         console.log(num);
+        //     }
+        // }
+        // var ff = f1();
+        // ff();
+        // ff();
+        // ff();
+    </script>
+</body>
+
+</html>

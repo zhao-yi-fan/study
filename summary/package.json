@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "echarts": "^4.4.0",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "velocity-animate": "^1.5.2",
+    "vue": "^2.6.10"
+  }
+}

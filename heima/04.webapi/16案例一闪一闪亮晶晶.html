@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 600px;
+			height: 600px;
+			background-color: black;
+			border: 2px solid yellow;
+			position: relative;
+		}
+		span {
+     		font-size: 30px;
+			position: absolute;
+			color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="btn" value="特效" />
+	<div id="dv"></div>
+	<script src="common.js"></script>
+	<script>
+		my$("btn").onclick = function(){
+			//会一直追加,一直创建span标签
+			var spanObj = document.createElement("span");
+			spanObj.innerText = "★";
+			my$("dv").appendChild(spanObj);
+			setInterval(function(){
+				//my$("dv").innerHTML = "<span>★</span>";
+				var x = parseInt(Math.random()*600+1);
+				var y = parseInt(Math.random()*600+1);
+				my$("dv").firstElementChild.style.left = x + "px";
+				my$("dv").firstElementChild.style.top = y + "px";
+			},100);
+		}
+	</script>
+</body>
+</html>

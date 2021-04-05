@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 200px;
+			height: 300px;
+			border: 3px dashed pink;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="btn" value="追加" />
+	<div id="dv"></div>
+	<script src="common.js"></script>
+	<script>
+		my$("btn").onclick = function(){
+			var pObj = document.createElement("p");
+			setInnerText(pObj,"这是一个P");
+			my$("dv").appendChild(pObj);
+		};
+	</script>
+</body>
+</html>

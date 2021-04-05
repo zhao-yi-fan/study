@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //有缓存,先生成一个随机数,再把这个随机数放到一个函数中返回,之后再用的时候直接输出这个函数就行.
+        function f1() {
+            var num = parseInt(Math.random() * 10 + 1);
+            return function () {
+                console.log(num);
+            };
+        }
+        var ff = f1();
+        ff();
+        ff();
+        ff();
+
+    </script>
+</body>
+
+</html>

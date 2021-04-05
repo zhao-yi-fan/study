@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //遍历对象,是不能通过for循环的,因为无序
+        var json = {
+            "name": "小明",
+            "age": "18",
+            "sex": "男"
+        };
+        for (var key in json) {
+            console.log(key + "=======" + json[key]);
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

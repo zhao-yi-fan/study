@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="dv">哦哦
+  <span>这是div中的第一个span标签</span>
+  <p>这是div中的第二个元素,第一个p标签</p>
+  <ul id="uu">
+    <li>乔峰</li>
+    <li>鹿茸</li>
+    <li id="three">段誉</li>
+    <li>卡卡西</li>
+    <li>雏田</li>
+  </ul>
+</div>
+<script src="common.js"></script>
+<script>
+	//获取节点和元素
+	var ulObj = my$("uu");
+	
+	//父级节点
+	console.log(ulObj.parentNode);
+	//父级元素
+	console.log(ulObj.parentElement);
+	//子级节点
+	console.log(ulObj.childNodes);
+	//子级元素
+	console.log(ulObj.children);
+
+	console.log("==============================");
+
+	//获取第一个子节点
+	console.log(ulObj.firstChild);
+	//获取第一个子元素
+	console.log(ulObj.firstElementChild);
+	//最后一个子节点
+	console.log(ulObj.lastChild);
+	//最后一个子元素
+	console.log(ulObj.lastElementChild);
+	
+	//某个元素的前一个兄弟节点
+	console.log(my$("three").previousSibling);
+	//某个元素的前一个兄弟元素
+	console.log(my$("three").previousElementSibling);
+	//某个元素的后一个兄弟节点
+	console.log(my$("three").nextSibling);
+	//某个元素的后一个兄弟元素
+	console.log(my$("three").nextElementSibling);
+</script>
+</body>
+</html>

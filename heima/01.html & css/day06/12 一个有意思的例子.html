@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 250px;
+			height: 500px;
+			float: left;
+			border: 1px solid #ccc;
+			margin-left: -1px;
+			/* div里面有可能会出现绝对定位的元素,所有div会出现相对定位*/
+			position: relative;
+		}
+		div:hover {
+			border: 1px solid #f40;
+			/*position: relative; */
+			/* div整个加了相对定位的话,hover加了相对定位就没有意义了,不起作用了,这时候要加z-index升级层级*/
+			z-index: 1;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

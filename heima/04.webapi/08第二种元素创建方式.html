@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 200px;
+			height: 300px;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="btn" value="加入" />
+	<div id="dv">
+		
+	</div>
+	<script src="common.js"></script>
+	<script>
+		my$("btn").onclick = function(){
+			my$("dv").innerHTML = "<p>这是一个p标签</p>";
+		}
+	</script>
+</body>
+</html>

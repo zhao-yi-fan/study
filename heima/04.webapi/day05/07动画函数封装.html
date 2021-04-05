@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function animate(element,target){
+			clearInterval(element.timeId);
+			element.timeId = setInterval(function(){
+				var current = element.offsetLeft;
+				var step = 10;
+				step = current<target?step:-step;
+				current += step;
+				if(Math.abs(target-current)>Math.abs(step)){
+					element.style.Left = current + "px";
+				}else {
+					element.style.Left = target + "px";
+					clearInterval(element.timeId);
+				}
+			},20);
+			
+		}
+	</script>
+</body>
+</html>

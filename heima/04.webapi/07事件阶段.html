@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#dv1 {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+		#dv2 {
+			width: 150px;
+			height: 150px;
+			background-color: green;
+		}
+		#dv3 {
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="dv1">
+		<div id="dv2">
+			<div id="dv3"></div>
+		</div>
+	</div>
+	<script src="common.js"></script>
+	<script>
+		var objs = [my$("dv1"),my$("dv2"),my$("dv3")];
+		objs.forEach(function(ele){
+			//为每个元素绑定事件
+			ele.addEventListener("click",function(e){
+				console.log(this.id+"=====>"+e.eventPhase);
+			},true);
+		});
+	</script>
+</body>
+</html>

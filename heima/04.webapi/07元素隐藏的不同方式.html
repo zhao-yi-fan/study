@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 300px;
+			height: 300px;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="btn" value="显示效果" />
+	<div id="dv"></div>哈哈
+	<script src="common.js"></script>
+	<script>
+		document.getElementById("btn").onclick = function(){
+			//不占位
+			//my$("dv").style.display = "none";
+			//占位
+			//my$("dv").style.opacity = 0;
+			//占位
+			//my$("dv").style.height = 0;
+			//my$("dv").style.border = "0 solid #ccc";
+			//占位
+			my$("dv").style.visibility = "hidden";
+		};
+	</script>
+</body>
+</html>

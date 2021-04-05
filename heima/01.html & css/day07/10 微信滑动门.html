@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		li {
+			list-style: none;
+		}
+		.nav {
+			width: 100%;
+			height: 499px;
+			background: url(images/wx.jpg) repeat-x;
+		}
+		.nav ul {
+			width: 100%;
+			height: 75px;
+			margin: 0 100px;
+			line-height: 75px;
+		}
+		.nav ul li {
+			float: left;
+			margin: 0 25px;
+		}
+		.nav li a {
+			height: 33px;
+			line-height: 33px;
+			display: inline-block;
+			background: url(images/to.png) no-repeat ;
+			padding-left: 15px;
+			color: #fff;
+			text-decoration: none;
+
+		}
+		.nav li span {
+			background: url(images/to.png) no-repeat right;
+			display: inline-block;
+			padding-right: 15px;
+		}
+		.nav li a:hover, .nav li a:hover span {
+			/*background: url(images/ao.png);    如果是background 会把no-repeat left和right 初始化*/
+			background-image: url(images/ao.png);
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<ul>
+			<li>
+				<a href="#">
+					<span>首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span>应用商店</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span>啊啊啊啊啊</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

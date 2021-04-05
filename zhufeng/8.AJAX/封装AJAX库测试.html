@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="js/ajax.js"></script>
+    <script>
+        ajax({
+            url: 'https://www.easy-mock.com/mock/5b0412beda8a195fb0978627/temp/list',
+            method: 'GET',
+            data: {
+                name: '赵一凡',
+                age: 28
+            },
+            cache: true,
+            success: (result, xhr) => {
+                console.log(result);
+            },
+            error: (result, xhr) => {
+                console.log(result);
+
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+/*页面初始化*/
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #fafafa;
+}
+li {
+	list-style: none;
+}
+ .clearfix:after {  content: ""; display: block; height: 0; clear: both; visibility: hidden;  }   
+
+ .clearfix {*zoom: 1;}   /* IE6、7 专有 */
+
+/*头部*/
+.header {
+	background-color: #fff;
+}
+.inner {
+	width: 1240px;
+	margin: 0 auto;
+}
+.logo{
+	float: left;
+}
+.nav {
+	float: right;
+}
+.nav li {
+	float: left;
+	line-height: 100px;
+	margin: 0 20px;
+	
+}
+.nav li a {
+	color: #333;
+	text-decoration: none;
+}
+.nav li a:hover {
+	color: #2288f6;
+}
+/* banner start */
+.banner {
+	height: 620px;
+	background: url(../images/banner.jpg) no-repeat top center;
+
+	
+}
+/* banner end */
+.service {
+	width: 1055px;
+	margin: 75px auto 60px;
+	/*overflow: hidden;*/
+}
+
+.service-hd {
+	text-align: center;
+}
+.service h3 {
+	margin: 0 25px 28px;
+	border-top: 1px solid #ccc;
+}
+.service-hd img {
+	width: 166px;
+	height: 46px;
+	margin-top: -15px;
+}
+.service-hd p {
+	margin: 0 105px;
+	color: #666666;
+	font-size: 14px;
+	line-height: 25px;
+	
+	
+}
+.service-bd {
+	margin: 50px 0 0;
+}
+.service-bd li {
+	width: 320px;
+	height: 510px;
+	float: left;
+	background-color: #fff;
+}
+.service-bd li div {
+	margin-top: 40px;
+	width: 320px;
+	text-align: center;
+}
+
+.service-bd li h3 {
+	height: 38px;
+	text-align: center;
+	font-size: 18px;
+
+}
+.service-bd li p {
+	width: 235px;
+	height: 150px;
+	margin: 0 auto;
+	font-size: 10px;
+	color: #000;
+	line-height: 25px;
+}
+.service-bd li a {
+	width: 150px;
+	height:38px;
+	margin: 0 auto;
+	color: #ff9412;
+	font-size: 14px;
+	background-color: #fff;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	line-height: 38px;
+	border: 1px solid #ff9412;
+	border-radius: 5px;
+}
+.service-bd li a:hover {
+	color: #fff;
+	background-color: #ff9412;
+}
+
+.yingxiao {
+	margin: 0 47px;
+}
+.white {
+	width: 100%;
+	background-color: #fff;
+	padding: 64px 0 60px;
+}
+
+.case {
+	width: 1055px;
+	margin: 0 auto;
+}
+
+.case-hd {
+	text-align: center;
+	height: 100%;
+}
+.case h3 {
+	margin: 0 25px 45px;
+	border-top: 1px solid #ccc;
+}
+.case-hd img {
+	width: 166px;
+	height: 46px;
+	margin-top: -15px;
+}
+.case-bd {
+	width: 100%;
+}
+.case-bd ul {
+	position: relative;
+}
+.case-bd li {
+	width: 325px;
+	height: 210px;
+	float: left;
+	position: relative;
+}
+.case-bd-m {
+	margin: 0 40px;
+}
+.text {
+	width: 100%;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	color: #fff;
+	background-color: rgba(0, 0, 0, .4);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.mask {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .4) url(../images/fdj.png) no-repeat center center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.case-bd li:hover .mask {
+	display: block;
+}
+.left, .right {
+	width: 60px;
+	height: 60px;
+	background-color: rgba(0, 0, 0, .2); 
+	display: inline-block;
+	text-align: center;
+	line-height: 60px;
+	text-decoration: none;
+	color: #fff;
+	font-size: 30px;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	margin-top: -30px;
+}
+.left {
+	left: -90px;
+}
+.right {
+	right: -90px;
+}
+.left:hover, .right:hover {
+	background-color: #57a9ef;
+}
+.media {
+	width: 1055px;
+	padding: 64px 0 200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.media-hd h3 {
+	width: 1000px;
+
+	border-top: 1px solid #ccc;
+	margin: 0 auto;
+}
+.media-hd img {
+	margin: -15px auto 50px;
+	vertical-align: bottom;  /*去除图片底侧的空白缝隙,因为图片会和父级盒子基线对齐*/
+}
+.media-bd {
+	width: 1050px;
+	height: 240px;
+	overflow: hidden;
+}
+.media-bd ul {
+	width: 1055px;
+	height: 243px;      /*这里使用的技巧是,media-bd是爷爷级,ul是父级,li是子集,将爷爷级盒子变小并溢出隐藏,父级盒子比爷爷级稍大,此时子集由于父级不会换行显示,且把最右边和最下边的边框被爷爷级溢出隐藏.*/
+}
+.media-bd li {
+	width: 210px;
+	height: 65px;
+	border-right: 1px dashed #ccc;
+	border-bottom: 1px dashed #ccc;
+	line-height: 80px;
+	padding-top: 15px;
+	
+	float: left;
+
+}
+
+.media-bd li a {
+	display: block;
+}
+
+/*底部开始*/
+.black {
+	width: 100%;
+	background-color: #212425;
+	border: 1px solid #212425;  /*子盒子用到margin-top,为了防止塌陷,用border*/
+	
+}
+.footer {
+	width: 1070px;
+	margin: 50px auto 55px;
+}
+.subnav {
+	margin-bottom: 30px;
+	/*text-align: center;*/
+	
+}
+.subnav ul {
+	width: 645px;
+	/*display: inline-block;*/
+	margin: 0 auto;
+
+	
+}
+.subnav li {
+	float: left;
+	color: #f0f1f1;
+	font-size: 14px;
+}
+.subnav li a {
+	color: #f0f1f1;
+	text-decoration: none;
+	margin: 15px;
+}
+.subnav li a:hover {
+	color: #2288f6;
+	text-decoration: underline;
+}
+.footer p {
+	text-align: center;
+	color: #737474;
+	font-size: 14px;
+}
+
+	
+
+/*底部结束*/

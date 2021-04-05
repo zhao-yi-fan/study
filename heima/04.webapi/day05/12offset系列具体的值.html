@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    input{
+      top: 250px;
+      position: absolute;
+    }
+    #dv1{
+      width: 200px;
+      height: 150px;
+      background-color: red;
+      /*父级元素*/
+      position: relative;
+      margin-left: 10px;
+      padding-left: 10px;
+      left: 100px;
+    }
+    #dv2{
+      width: 100px;
+      height: 50px;
+      background-color: green;
+      position: absolute;
+      left: 10px;
+      margin-left: 100px;
+
+    }
+  </style>
+  <script>
+
+    //三个大的系列:
+    /*
+    * 三组属性
+    * 1. offset系列中的属性
+    *
+    *
+    * */
+  </script>
+</head>
+<body>
+	<div id="dv1">
+		<div id="dv2"></div>
+	</div>
+	<input type="button" value="显示效果" id="btn"/>
+	<script src="common.js"></script>
+	<script>
+		my$("btn").onclick = function(){
+			console.log(my$("dv2").offsetLeft);
+			console.log(my$("dv2").offsetTop);
+		}
+	</script>
+
+</body>
+</html>

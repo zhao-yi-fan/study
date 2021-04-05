@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 100%;
+			border: 1px solid red;
+		}
+		img {
+			vertical-align: bottom;   
+			/*图片默认是和文字的基线对齐,所有图片下面到div之间还有3px的距离,是文字默认基线到底线的距离.
+			为了避免3px的空白,可以用vertical=top  或  center 或  bottom  ,默认是baseline*/
+			display: block; /* 这种是把img变成块级标签,这样子就不会和文字行高的影响,会直接和父级挨着*/
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="images/tudou.jpg" alt="">
+		a啊啊啊啊啊 yyyjjj啊啊
+	</div>
+</body>
+</html>

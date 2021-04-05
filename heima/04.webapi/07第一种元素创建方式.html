@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="创建元素" />
+	哇吼吼
+	
+	<script src="common.js"></script>
+	<script>
+		//document.write();是页面加载结束生效,才会覆盖..加载的过程中创建元素不会覆盖,只会一起出来
+		// my$("btn").onclick = function(){
+		// 	document.write("<p>这是一个p</p>");
+		// }
+		document.write("<p>这是一个p</p>");//加载过程中...
+	</script>
+</body>
+</html>

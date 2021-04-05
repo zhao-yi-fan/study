@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="按钮" />
+	<input type="button" id="btn2" value="取消绑定事件">
+	<script src="common.js"></script>
+	<script>
+		function f1(){
+			console.log("哈哈");
+		};
+		function f2(){
+			console.log("哈哈2");
+		};
+		my$("btn").attachEvent("onclick",f1);
+		my$("btn").attachEvent("onclick",f2);
+		my$("btn2").onclick = function(){
+			my$("btn").detachEvent("onclick",f1);
+		};
+	</script>
+</body>
+</html>

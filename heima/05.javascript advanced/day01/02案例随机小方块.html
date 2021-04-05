@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.map {
+			width: 800px;
+			height: 600px;
+			background-color: #ccc;
+			position: relative;
+		}
+	</style>
+	
+</head>
+<body>
+	<div class="map"></div>
+	<script src="common.js"></script>
+	<script>
+		(function(window){
+			function Random(){
+			}
+			Random.prototype.getRandom = function(min,max){
+				return Math.floor(Math.random()*(max-min)+min);
+			};
+			window.Random = new Random();
+		})(window);
+
+		(function(window){
+			var map = document.querySelector(".map");
+			function Food(width,height,color){
+				this.width = width||20;
+				this.height = height||20;
+				this.x = 0;
+				this.y = 0;
+				this.color = color;
+				this.element = document.createElement("div");
+			}
+			Food.prototype.render = function(map){
+
+				var x = Random.getRandom(0,(map.offsetWidth/this.width)*this.width);
+				var y = Random.getRandom(0,(map.offsetHeight/this.height)*this.height);
+				this.x = x;
+				this.y = y;
+				var div = this.element;
+				div.style.left = this.x + "px";
+				div.style.top = this.y + "px";
+			};
+			Food.prototype.init = function(map){
+				var div = this.element;
+				div.style.width = this.width + "px";
+				div.style.height = this.height + "px";
+				div.style.backgroundColor = this.color;
+				div.style.position = "absolute";
+				map.appendChild(div);
+				this.render(map);
+
+			};
+			var food = new Food(20,20,"green");
+			food.init(map);
+		})(window);
+		
+
+	</script>
+</body>
+</html>

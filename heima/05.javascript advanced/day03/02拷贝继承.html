@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//1.第一种
+		// obj1 = {
+		// 	name: "小明",
+		// 	age: "18",
+		// 	height: "173",
+		// 	play: function(){
+		// 		console.log("玩游戏");
+		// 	}
+		// }
+		// //改变了地址的指向
+		// var obj2 = {};
+		// obj2 = obj1;
+		// console.log(obj2.name);
+		// obj2.play();
+
+
+
+
+		//2.第二种
+		// function Person(){
+			
+		// }
+		// Person.prototype.name = "小明";
+		// Person.prototype.age = 18;
+		// Person.prototype.height = 173;
+		// Person.prototype.play = function(){
+		// 	console.log("玩游戏");
+		// };
+
+		// var obj = {};
+		// for(var key in Person.prototype){
+		// 	obj[key] = Person.prototype[key];
+		// }
+		// console.log(obj.name);
+		// obj.play();
+
+		// function Student = {
+
+		// }
+
+
+
+		//3.第三种
+		var obj1 = {
+			name: "小明",
+			age: "18",
+			sex: "男"
+		};
+		var obj2 = {};
+		for(var key in obj1){
+			obj2[key] = obj1[key];
+		}
+		console.log(obj2.name);
+		console.dir(obj2);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //正则表达式后的g是全局搜索
+        //i是不区分大小写
+
+
+        // var str = "中国移动:10086,中国联通:10010,中国电信:10000";
+        // var array = str.match(/\d{5}/g);
+        // console.log(array);
+
+        // var str = "123123@xx.com,fangfang@valuedopinions.cn 286669312@qq.com 2、emailenglish@emailenglish.englishtown.com 286669312@qq.com...";
+        // var array = str.match(/\w+@\w+\.\w+(\.\w+)?/g);
+        // console.log(array);
+
+        // var str = "2017-11-23";
+        // var arr = str.match(/(\d{4})[-](\d{2})[-](\d{2})/g);
+        // //正则表达式对象.$3
+        // console.log(RegExp.$3);
+
+        // var email = "shuaiyangtaishuaile@itcast.com.cn";
+        // var arr = email.match(/^([0-9a-zA-Z_.-]+)[@]([0-9a-zA-Z_-]+)(([.][a-zA-Z]+){1,2})/);
+        // console.log(RegExp.$1);//用户名
+        // console.log(RegExp.$2);//126     去不去掉.都可以,但有时候会认为.可能是前面的内容也可能是后面的内容
+        // console.log(RegExp.$3);//域名
+
+        // var str = "小苏好帅哦,真的是太帅了,帅,就是真帅";
+        // var str = str.replace(/帅/g, "猥琐");
+        // console.log(str);
+
+        // var str = "  哦买噶的    ,太幸福了  ";
+        // var str = str.trim();//trim() 方法会从一个字符串的两端删除空白字符。在
+        // console.log("==========" + str + "======");
+
+        // var str = "  哦买噶的    ,太幸福了  ";
+        // var str = str.replace(/\s+/g, "");
+        // console.log("==========" + str + "======");
+
+        //所有的h都替换成s
+        // var str = "HhppHh";
+        // var str = str.replace(/h/gi, "S");
+        // console.log(str);
+
+        //所有的h都替换成s
+        // var reg = /h/gi;
+        // var str = "HhppHh";
+        // var str = str.replace(reg, "S");
+        // console.log(str);
+
+
+        //最前面是用数组的match(reg)方法,返回的一个数组. 
+        //现在是用正则表达式的方法reg.exec(str)方法,参数放字符串,由正则表达式reg调用,返回的也是数组,只不过是一个内容的数组.
+        // var str = "中国移动:10086,中国联通:10010,中国电信:10000";
+        // var reg = /\d{5}/g;
+        // var array = reg.exec(str);
+        // console.log(array);
+        // console.log(reg.exec(str));
+        // console.log(reg.exec(str));
+
+
+        //正好碰到无限循环了,输出的一直是10010和null交叉出现
+        // var str = "中国移动:10086,中国联通:10010,中国电信:10000";
+        // var reg = /\d{5}/g;
+        // var array = reg.exec(str);//10086 
+        // while (array != null) {//10086 10000 
+        //     console.log(reg.exec(str));//10010 null 
+        //     array = reg.exec(str);//10000 10086 
+        // }
+
+        //正确的
+        var str = "中国移动:10086,中国联通:10010,中国电信:10000";
+        var reg = /\d{5}/g;
+        var array = reg.exec(str);
+        while (array != null) {
+            console.log(array[0]);
+            array = reg.exec(str);
+        }
+
+    </script>
+</body>
+
+</html>

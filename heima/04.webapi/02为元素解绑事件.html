@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="按钮" />
+	<input type="button" id="btn2" value="取消绑定事件" />
+	<script src="common.js"></script>
+	<script>
+		//第二种取消元素解绑事件
+		function f1(){
+			console.log("哈哈1");
+		};
+		my$("btn").addEventListener("click",f1,false);
+		my$("btn").addEventListener("click",function(){
+			console.log("哈哈2");
+		},false);
+		my$("btn2").onclick = function(){
+			//在btn2中取消btn注册的事件
+			my$("btn").removeEventListener("click",f1,false);
+		};
+		
+	</script>
+</body>
+</html>

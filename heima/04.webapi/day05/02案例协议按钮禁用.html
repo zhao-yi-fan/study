@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<textarea name="" id="" cols="30" rows="10">不同意,就不让你注册</textarea>
+	<input type="button" id="btn" disabled value="请仔细阅读协议(5)" />
+	<script src="common.js"></script>
+	<script>
+		time=5;
+		var timeId = setInterval(function(){
+			time--;
+			if(time>=0){
+				my$("btn").value = "请仔细阅读协议("+time+")";
+			}else{
+				my$("btn").value = "同意";
+				my$("btn").disabled = false;
+				clearInterval(timeId);
+			}
+			
+		},1000)
+	</script>
+</body>
+</html>

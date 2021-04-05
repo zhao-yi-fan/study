@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <select name="interest" lay-filter="aihao">
+    <option value="0">写作</option>
+    <option value="1">阅读</option>
+  </select>
+  <script src="utils.js"></script>
+  <script>
+    console.log(Utils)
+
+    Utils.statusFunction();
+    (function () {
+      var Index_browser = Utils.browerType;
+      var isPC = true;  //是否移动端参数
+      console.log(window.screen)
+      console.log(Index_browser.versions)
+      //增加移动端判断
+      if (Index_browser.versions.mobile || Index_browser.versions.ios || Index_browser.versions.android ||
+        Index_browser.versions.iPhone || Index_browser.versions.iPad) {
+        isPC = false;
+      } else if (window.screen.width < 1280) {
+        isPC = false;
+      }
+    })()
+    var type = Utils.getEntriesByType()
+    console.log(type, '性能')
+    // 重写时间戳转换方法
+    Date.prototype.toLocaleString = function () {
+      return this.getFullYear() + "-" + (this.getMonth() + 1 < 10 ? '0' + (this.getMonth() + 1) : this.getMonth() + 1) + "-" + (this.getDate() < 10 ? '0' + (this.getDate()) : this.getDate()) + " " + (this.getHours() < 10 ? '0' + (this.getHours()) : this.getHours()) + ":" + (this.getMinutes() < 10 ? '0' + (this.getMinutes()) : this.getMinutes()) + ":" + (this.getSeconds() < 10 ? '0' + (this.getSeconds()) : this.getSeconds());
+    };
+
+    // 重写时间戳转换方法
+    Date.prototype.toLocaleDate = function () {
+      return this.getFullYear() + "-" + (this.getMonth() + 1 < 10 ? '0' + (this.getMonth() + 1) : this.getMonth() + 1) + "-" + (this.getDate() < 10 ? '0' + (this.getDate()) : this.getDate());
+    };
+
+
+
+    /* 需要再浏览器界面操作一下，然后刷新或者关闭才会触发 */
+    // window.onbeforeunload = function (event) {
+    //   var e = window.event || event;
+    //   e.returnValue = '确定关闭么？'
+    // }
+  </script>
+</body>
+
+</html>

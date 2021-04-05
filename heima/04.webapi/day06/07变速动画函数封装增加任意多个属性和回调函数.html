@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      margin-top: 30px;
+      width: 200px;
+      height: 100px;
+      background-color: green;
+      position: absolute;
+      left:0;
+      top:0;
+    }
+  </style>
+
+</head>
+<body>
+	<input type="button" value="移动到400px" id="btn1"/>
+	<div id="dv"></div>
+	<script src="common.js"></script>
+	<script>
+
+		my$("btn1").onclick = function(){
+			var json1 = {"width":400,"height":500,"left":500,"top":80};
+			animate(my$("dv"),json1,function(){
+				
+				var json2 = {"width":200,"height":250,"left":0,"top":300};
+				animate(my$("dv"),json2);
+			});
+			
+
+		}
+		function getStyle(element,attr){
+			return window.getComputedStyle?window.getComputedStyle(element,null)[attr]:element.currentStyle[attr];
+		}
+		function animate(element,json,fn){
+			clearInterval(element.timeId);
+
+			element.timeId = setInterval(function(){
+				var flag = true;
+				for(var attr in json){//每个属性都要过一轮
+					var target = json[attr];
+					var current = parseInt(getStyle(element,attr));//数字类型
+					var step = (target-current)/10;
+					step = step>0?Math.ceil(step):Math.floor(step);
+					current += step;
+					element.style[attr] = current + "px";
+					//一个属性一个属性走,一个属性不满足就进入变false,flag这个变量还会带入下一个属性,如果不满足还是进入变false,只要有一个不满足就是false,因为满足的话就不会进入.
+					//到最后的话,所有的属性都满足了目标值,每个属性都不会进入改变flag值,最后会是最初的flag=true出去.
+					if(current!=target){
+						flag = false;
+					}
+					
+				}
+
+				if(flag){
+					clearInterval(element.timeId);
+					//如果有fn,就执行,上一轮变化都结束,再执行
+					if(fn){
+						fn();
+					}
+				}
+				
+				console.log("目标位置:"+target+",当前位置:"+current+",每次移动步数:"+step);
+			},20);
+		}
+	</script>
+
+</body>
+</html>

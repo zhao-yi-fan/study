@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    请输入邮箱:<input type="text" id="txt" value="" /> *
+    <script>
+        document.getElementById("txt").onblur = function () {
+            if (/^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/.test(this.value)) {
+                this.style.backgroundColor = "green";
+            } else {
+                this.style.backgroundColor = "red";
+            }
+        };
+    </script>
+</body>
+
+</html>

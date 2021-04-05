@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="按钮" />
+	<script src="common.js"></script>
+	<script>
+		function addEventListener(element,type,fn){
+			if(element.addEventListener){
+				element.addEventListener(type,fn,false);
+			}else if(element.attachEvent){
+				element.attachEvent("on"+type,fn);
+			}else{
+				element["on"+type]=fn;
+			}
+		}
+		addEventListener(my$("btn"),"click",function(){
+			console.log("哦1");
+		});
+		addEventListener(my$("btn"),"click",function(){
+			console.log("哦2");
+		});
+	</script>
+	
+</body>
+</html>

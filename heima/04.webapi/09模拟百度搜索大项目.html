@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #box {
+      width: 450px;
+      margin: 200px auto;
+    }
+
+    #txt {
+      width: 350px;
+    }
+
+    #pop {
+      width: 350px;
+      border: 1px solid red;
+    }
+
+    #pop ul {
+      margin: 10px;
+      padding: 0px;
+      width: 200px;
+      list-style-type: none;
+
+    }
+
+    #pop ul li {
+
+    }
+  </style>
+</head>
+<body>
+
+<div id="box">
+  <input type="text" id="txt" value="">
+  <input type="button" value="搜索" id="btn">
+
+</div>
+
+<script src="common.js"></script>
+<script>
+
+
+  var keyWords = ["小杨才是最纯洁的", "小杨才是最帅的", "小段是最猥琐的", "小超是最龌龊的", "传智播客是一个培训机构", "传说在传智有个很帅很纯洁的小杨", "苹果好吃", "苹果此次召回还是没有中国"];
+  //获取文本框注册键盘抬起事件
+  my$("txt").onkeyup = function(){
+
+    //每一次的键盘抬起都判断页面中有没有这个div
+    //打完"小杨"后,删除"杨"时,不会删除原始的id为dv的div,又会再创建一个div,两个会同时存在,要每次按下键盘都先清空一下div.
+    if(my$("dv")){
+      my$("box").removeChild(my$("dv"));
+    }
+
+
+    var text = this.value;
+    var tempArr = [];
+    for(i = 0; i<keyWords.length;i++){
+      //在没打字时,value.length为0,tempArr.length为0.
+      //在打x.i.a.o时,不打回车到"小"时,都没有和数组中的每个值的0索引匹配.此时,value.length不为0,tempArr.length为0.
+      //当打完"小",接着打y.a.n.g不打回车到"杨"时,此时认为是"小y","小ya","小yan","小yang",也没有和数组中的每个值的0索引匹配.此时的value.length不是0.但临时数组tempArr一直为空.
+      //所以在没打字完成的过程中,临时数组tempArr都是为空,会把新建的id为dv的div删除,当打字完成后才会创建新id为dv的div.
+      if(keyWords[i].indexOf(text) == 0){
+        tempArr.push(keyWords[i]);
+      }
+    }
+    //只能判断长度,不能判断是否为空
+    //如果先打了字,然后删完,此时长度是0,但字符是空,并不是没有,空字符确实是keyWords数组中每个值索引为0的部分.会返回所有keyWords数组的值.
+    //这种情况没有打字的开始是不会出现了,没有打字的开始会认为this.value字符是没有的,打了字之后删掉会认为字符是空,并不是没有.所以要以this.value的长度判断,不能判断是否为空.
+    //该判断一定要有,否则每次都会创建id为dv的div,虽然里面什么也没有,但也不允许.
+    if (this.value.length == 0 || tempArr.length == 0){
+      if(my$("dv")){
+        my$("box").removeChild(my$("dv"));
+      }
+      return;
+    }
+    //创建新的div,把新创建的div放到id为box的div中
+    var dvObj = document.createElement("div");
+    my$("box").appendChild(dvObj);
+    dvObj.id = "dv";
+    dvObj.style.width = "350px";
+    dvObj.style.border= "1px solid red";
+    for(i=0;i<tempArr.length;i++){
+      var pObj = document.createElement("p");
+      dvObj.appendChild(pObj);
+      //把临时数组放到新建的div中的p标签中
+      setInnerText(pObj, tempArr[i]);
+      pObj.style.margin = 0;
+      pObj.style.padding = 0;
+      pObj.style.cursor = "pointer";
+      pObj.style.marginTop = "5px";
+      pObj.style.marginLeft = "5px";
+      pObj.onmouseover = function(){
+        this.style.backgroundColor = "yellow";
+      }
+      pObj.onmouseout = function(){
+        this.style.backgroundColor = "";
+      }
+    }
+
+  }
+
+</script>
+
+</body>
+</html>

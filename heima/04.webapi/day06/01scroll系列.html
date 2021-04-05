@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		div {
+			position: absolute;
+			width: 300px;
+			height: 200px;
+			border: 2px solid red;
+			overflow: auto;
+		}
+		input {
+			left: 330px;
+			position: absolute;
+			top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value="按钮" id="btn" />
+	<div id="dv">你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊你好啊</div>
+	<script src="common.js"></script>
+	<script>
+		my$("btn").onclick = function(){
+			console.log("scrollWidth:"+my$("dv").scrollWidth);//不算边框
+			console.log("scrollHeight:"+my$("dv").scrollHeight);
+			console.log("scrollLeft:"+my$("dv").scrollLeft);
+			console.log("scrollTop:"+my$("dv").scrollTop);
+		}
+		my$("dv").onscroll = function(){
+			console.log("scrollTop:"+this.scrollTop);
+		}
+	</script>
+</body>
+</html>

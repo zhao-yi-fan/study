@@ -1,0 +1,61 @@
+@import 'reset.min.less';
+
+html {
+  font-size: 100px; /* 640px设计稿尺寸中：1rem=100px */
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+.mainBox {
+  margin: 0 auto;
+  max-width: 640px;
+  height: 100%;
+  background: #fff;
+}
+
+/* 每个页面的盒子都有一样的公共样式，单独提取出来 */
+.loadingBox {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* LOADING */
+.loadingBox {
+  background: #000;
+
+  .title {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -2.2rem; /* -0.7(正中间)+1.5(距离中间靠上的位移) */
+    height: 1.4rem;
+    color: #fff;
+    h1 {
+      line-height: 0.75rem;
+      font-size: 0.5rem;
+      text-align: center;
+    }
+    h2 {
+      margin-top: 0.2rem;
+      line-height: 0.45rem;
+      font-size: 0.26rem;
+      text-align: center;
+      letter-spacing: 0.04rem; /* 字间距 */
+    }
+  }
+  .progress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0.85rem 0 0 -2.3rem;
+    width: 4.6rem;
+    height: 0.3rem;
+    background: #fff;
+  }
+}

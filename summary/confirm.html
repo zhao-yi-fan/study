@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="aaa">点击</button>
+    
+  <script>
+    // var result = confirm('aaaa')
+    // console.log(result)
+
+    /* setTimeout(() => {
+      window.print()
+    }, 1000); */
+    let oDiv = document.getElementById('aaa')
+    console.log(oDiv)
+    // 打印
+    /* oDiv.onclick = function (){
+      window.print()
+    } */
+    oDiv.onclick = function (){
+      console.log(location)
+      // location.href = 'http://www.baidu.com'
+      // window.location = 'http://www.baidu.com'
+
+      // replace()跳转之后不能后退到该页面
+      // location.replace('http://www.baidu.com')
+
+      // reload()
+      // location.reload()
+      
+      console.log(navigator)
+    }
+  </script>
+</body>
+</html>

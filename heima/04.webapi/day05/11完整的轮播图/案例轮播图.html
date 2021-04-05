@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      border: 0;
+    }
+
+    .all {
+      width: 500px;
+      height: 200px;
+      padding: 7px;
+      border: 1px solid #ccc;
+      margin: 100px auto;
+      position: relative;
+    }
+
+    .screen {
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .screen li {
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+      float: left;
+    }
+
+    .screen ul {
+      position: absolute;
+      left: 0;
+      top: 0px;
+      width: 3000px;
+    }
+
+    .all ol {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      line-height: 20px;
+      text-align: center;
+    }
+
+    .all ol li {
+      float: left;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .all ol li.current {
+      background: #DB192A;
+    }
+
+    #arr {
+      display: none;
+    }
+
+    #arr span {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      margin-top: -20px;
+      background: #000;
+      cursor: pointer;
+      line-height: 40px;
+      text-align: center;
+      font-weight: bold;
+      font-family: '黑体';
+      font-size: 30px;
+      color: #fff;
+      opacity: 0.3;
+      border: 1px solid #fff;
+    }
+
+    #arr #right {
+      right: 5px;
+      left: auto;
+    }
+  </style>
+</head>
+<body>
+<div class="all" id='box'>
+  <div class="screen"><!--相框-->
+    <ul>
+      <li><img src="images/1.jpg" width="500" height="200"/></li>
+      <li><img src="images/2.jpg" width="500" height="200"/></li>
+      <li><img src="images/3.jpg" width="500" height="200"/></li>
+      <li><img src="images/4.jpg" width="500" height="200"/></li>
+      <li><img src="images/5.jpg" width="500" height="200"/></li>
+    </ul>
+    <ol>
+    </ol>
+  </div>
+  <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+</div>
+<script src="common.js"></script>
+<script>
+
+  var box = my$("box");
+  var screen = box.children[0];
+  //获取相框的宽度
+  var imgWidth = screen.offsetWidth;
+  var ulObj = screen.children[0];
+
+  var list = ulObj.children;
+  var olObj = screen.children[1];
+  var arr = my$("arr");
+
+
+  var pic = 0;
+  //创建小按钮--根据ul中li的个数
+  for(var i = 0; i < list.length; i++){
+    var liObj = document.createElement("li");
+    olObj.appendChild(liObj);
+    liObj.innerHTML = (i + 1);
+    liObj.setAttribute("index", i);
+    liObj.onmouseover = function(){
+      for(j = 0;j<olObj.children.length;j++){
+        olObj.children[j].removeAttribute("class");
+
+      }
+      this.setAttribute("class","current");
+      pic = this.getAttribute("index");
+      animate(ulObj, -pic*imgWidth);
+    }
+  }
+
+  //设置ol第一个有背景颜色
+  olObj.children[0].className = "current";
+
+  //克隆ul中第一个li追加到ul最后一个  克隆有顺序,如果克隆放到创建按钮上面,就会先克隆后创建,会多一个小按钮!!!!!
+  ulObj.appendChild(ulObj.children[0].cloneNode(true));
+
+  //鼠标进入box显示左右焦点
+  box.onmouseover = function(){
+    arr.style.display = "block";
+    clearInterval(timeId);
+  }
+
+  //鼠标出去box隐藏左右焦点
+  box.onmouseout = function(){
+    arr.style.display = "none";
+    timeId = setInterval(clickHandle, 1000);
+  }
+
+  //自动播放
+  var timeId = setInterval(clickHandle, 1000);
+
+  //右边焦点
+  my$("right").onclick = clickHandle;
+
+  //左边焦点
+  my$("left").onclick = function(){
+    //如果上一张是第一张图,就是索引pic为0,那么再点击会重置pic为5,瞬间到第六张图.下面有pic--,然后从第六张图往第五张图转换.
+    if(pic == 0){
+      pic = 5;
+      ulObj.style.left = -pic * imgWidth + "px";
+    }
+    pic--;
+    animate(ulObj, -pic * imgWidth);
+    //干掉所有小按钮的颜色
+    for(var i = 0; i<olObj.children.length; i++){
+      olObj.children[i].removeAttribute("class");
+    }
+    olObj.children[pic].className = "current";
+  };
+
+  function clickHandle(){
+    //图片一直在轮播,播放速度和图片大小也有影响,定时器是1秒,如果一秒内移动速度快,或者定时器时间间隔长,就会停顿展示一下,效果最好.如果一秒内移动速度慢,或者定时器时间间隔短,在这时间间隔内图片没播完就会播下一张图片.
+    //第六张停好了之后,和第一张停好的效果是一样的,当索引pic是5的话,停好了之后过1秒就会从第一张开始动
+    if(pic == list.length - 1){
+      pic = 0;
+      ulObj.style.left = 0 + "px";
+    }
+    pic++;
+    animate(ulObj, -pic*imgWidth);
+    //干掉五个小按钮的背景颜色
+    if(pic == list.length - 1){
+      //索引为5时,是第六张图片,是没有第六个按钮的,要让第一个按钮亮.但是上一轮第五个按钮没有清除,还存在,应该要把第五个按钮北京消除.
+      // for(var i = 0; i<olObj.children.length; i++){
+      //   olObj.children[i].removeAttribute("class");
+      // }
+      olObj.children[olObj.children.length-1].className="";
+      olObj.children[0].className = "current";
+    }else{
+      for(var i = 0; i<olObj.children.length; i++){
+        olObj.children[i].removeAttribute("class");
+      }
+      olObj.children[pic].className="current";
+    }
+    
+  }
+ function animate(element,target){
+
+      clearInterval(element.timeId);
+      element.timeId = setInterval(function(){
+        var current = element.offsetLeft;
+        var step = 10;
+        step = current<target?step:-step;
+        current += step;
+
+        if(Math.abs(target-current)>Math.abs(step)){
+          
+          element.style.left = current + "px";
+        }else {
+          
+          element.style.left = target + "px";
+          clearInterval(element.timeId);
+        }
+      },10);
+      
+  }
+</script>
+
+ 
+<script>
+
+
+  //  var num=0;
+  //  function f1(){
+  //
+  //    num=1000;
+  //  }
+  //  f1();
+  //  console.log(num);
+</script>
+</body>
+</html>
