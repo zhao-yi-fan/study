@@ -11,8 +11,10 @@
 <body>
   <script>
     let xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:4000/getData', true);
-    xhr.setRequestHeader('name', 'zfpx');
+    xhr.open('post', 'http://localhost:4000/getData', true);
+    // document.cookie = 'aaa=zyf;'
+    // xhr.withCredentials = true;
+    // xhr.setRequestHeader('name', 'zfpx');
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
@@ -22,7 +24,7 @@
 
       }
     }
-    xhr.send()
+    xhr.send(JSON.stringify({aaa:1,bbb:2}))
   </script>
 </body>
 

@@ -1,9 +1,12 @@
 let express = require('express');
 let app = express();
+var querystring = require('querystring');
+var util = require('util');
 let whiteList = ['http://localhost:3000']
 app.use(function (req, res, next) {
   let origin = req.headers.origin;
   if (whiteList.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Credentials', 'true')
     // 设置哪个源可以访问
     res.setHeader('Access-Control-Allow-Origin', origin)
     res.setHeader('Access-Control-Allow-Headers', 'name'); // 多个 'name,a,b,c'     对应 xhr.setRequestHeader('name', 'zfpx');
@@ -17,6 +20,21 @@ app.use(function (req, res, next) {
     }
   }
   next();
+})
+app.post('/getData', function (req, res) {
+  // console.log(req.headers);
+  var post = '';    
+  req.on('data', function (data) {
+    post += data;
+  });
+  // 在end事件触发后，通过querystring.parse将post解析为真正的POST请求格式，然后向客户端返回。
+  req.on('end', function () {
+    //解析为post对象
+    post = querystring.parse(post);
+    console.log(post,'post===');
+  });
+  res.end('我不爱你')
+
 })
 app.put('/getData', function (req, res) {
   console.log(req.headers);
