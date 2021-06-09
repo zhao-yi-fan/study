@@ -1,6 +1,7 @@
 // node 方法 异步的i/o
 // file system
 let fs = require('fs')
+let path = require('path')
 // 异步的 回调 try catch只能读取同步的
 
 function out () {
@@ -9,10 +10,9 @@ function out () {
     console.log(school)
   }
 }
-
-fs.readFile('./name.txt', 'utf8', function (err, data) {
+fs.readFile(path.resolve(__dirname + '/name.txt'), 'utf8', function (err, data) {
   console.log(data)
 });
-fs.readFile('./age.txt', 'utf8', function (err, data) {
+fs.readFile(path.resolve(__dirname + '/age.txt'), 'utf8', function (err, data) {
   console.log(data)
 });
