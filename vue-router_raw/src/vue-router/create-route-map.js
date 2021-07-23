@@ -24,6 +24,10 @@ function addRouteRecord (route, pathMap) { // pathMap = {路径,记录}
     pathMap[path] = record
   }
 
-  if (route.children) { }
+  if (route.children) {
+    route.children.forEach((childRoute) => {
+      addRouteRecord(childRoute, pathMap)
+    })
+  }
 
 }

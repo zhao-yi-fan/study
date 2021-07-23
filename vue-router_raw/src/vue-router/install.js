@@ -5,7 +5,7 @@ export function install (Vue, options) {
   console.log(Vue, options);
   _Vue = Vue;
   // 我需要将当前的根实例提供的router属性共享给所有子组件
-  // 所有子组件初始化的时候 都回去调用Vue.extend Vue.options
+  // 所有子组件初始化的时候 都会去调用Vue.extend Vue.options
 
   Vue.mixin({
     beforeCreate () {
@@ -16,7 +16,7 @@ export function install (Vue, options) {
         this._router = this.$options.router;
         this._router.init(this);
       } else { // this为子孙辈
-        this._routerRoot = this.$parent & this.$parent._routerRoot;
+        this._routerRoot = this.$parent && this.$parent._routerRoot;
         // this._routerRoot._router;
 
       }
