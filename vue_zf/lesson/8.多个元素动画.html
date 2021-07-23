@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./node_modules/animate.css/animate.css">
+    <link rel="stylesheet" href="/node_modules/animate.css/animate.css">
 </head>
 
 <body>
@@ -15,36 +15,54 @@
             width: 100px;
             height: 100px;
             background-color: red;
+            transform: rotate3d(1, 1, 1, 360deg)
             /* opacity: 0.2 */
         }
 
-        .fade-enter {
-            opacity: 0
+        .fade-enter .father .box{
+          transform: rotate3d(1, 1, 1, 350deg)
         }
 
-        .fade-enter-active,
+        /* .fade-enter-to {
+          background-color: black;
+        } */
+
+        .fade-enter-active .father .box{
+          transition: transform 2s linear;
+            /* transition: background-color 2s linear; */
+            /* background: yellow; */
+        }
+        
+
         .fade-leave-active {
-            transition: opacity 1s linear;
+            transition: opacity 3s linear;
+        }
+
+        .fade-leave {
+            opacity: 0.3
         }
 
         /* 默认从当前状态变化 */
         /* .v-leave {
             opacity: 1
         } */
-        .fade-leave-to {
+        /* .fade-leave-to {
             opacity: 0
-        }
+        } */
 
     </style>
     <div id="app">
         <input type="text" v-model="filter">
-        <transition-group name="fade">
-            <div class="box" v-if="isShow" v-for="(d,index) in computedData" :key="d.title">{{d.title}}</div>
+        <button @click="isShow = !isShow">v-if</button>
+        <transition-group name="fade" appear type="transition">
+            <div class="father" :key="1">
+              <div class="box" v-if="isShow" v-for="(d,index) in computedData" :key="d.title">{{d.title}}</div>
+            </div>
         </transition-group>
 
     </div>
-    <script src="./node_modules/vue/dist/vue.js"></script>
-    <script src="./node_modules/velocity-animate/velocity.js"></script>
+    <script src="/node_modules/vue/dist/vue.js"></script>
+    <script src="/node_modules/velocity-animate/velocity.js"></script>
     <script>
         let vm = new Vue({
             el: '#app',
@@ -52,10 +70,6 @@
                 isShow: true,
                 filter:'',
                 dataList: [
-                    { title: '标题1' },
-                    { title: '标题2' },
-                    { title: '标题3' },
-                    { title: '标题4' },
                 ]
             },
             methods: {
@@ -67,6 +81,13 @@
                         return item.title.includes(this.filter)
                     });
                 }
+            },
+            mounted(){
+              setInterval(()=>{
+                this.dataList.push({
+                  title: '标题' + new Date().getTime()
+                })
+              },1000)
             }
         })
     </script>

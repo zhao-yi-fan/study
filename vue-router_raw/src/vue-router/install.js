@@ -10,9 +10,11 @@ export function install (Vue, options) {
   Vue.mixin({
     beforeCreate () {
       // 获取每个实例，给实例添加属性
+      console.log(this.name,'this.name====');
       if (this.$options.router) { // this为根
         this._routerRoot = this; // 根实例挂载到_routerRoot属性上
         this._router = this.$options.router;
+        this._router.init(this);
       } else { // this为子孙辈
         this._routerRoot = this.$parent & this.$parent._routerRoot;
         // this._routerRoot._router;
