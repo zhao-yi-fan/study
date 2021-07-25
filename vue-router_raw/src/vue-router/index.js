@@ -7,7 +7,8 @@ export default class VueRouter {
 
     // 创建匹配器后，核心的方法就是匹配
     // match addRoutes
-    createMatcher(options.routes || [])
+    this.matcher = createMatcher(options.routes || [])
+    console.log(this.matcher);
   }
   init (app) { // app根实例
     // 路由初始化
