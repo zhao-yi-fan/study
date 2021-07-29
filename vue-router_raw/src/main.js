@@ -9,5 +9,5 @@ new Vue({
   router,
   store,
   render: h => h(App),
-  name:'root'
+  name: 'root',
 }).$mount('#app')
