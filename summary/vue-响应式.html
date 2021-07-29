@@ -15,6 +15,12 @@
       <input type="text" name="" :id="index" v-model="item.name" @input="change">
       <!-- {{item.name}} -->
     </div>
+    <button @click="visible = !visible">切换可视区域</button>
+    {{date}}
+    <div>
+      可视区域
+      {{obj1.name}}
+    </div>
   </div>
   <script>
 
@@ -40,6 +46,12 @@
             bbb: 'nihao'
           },
           date: '2020',
+
+          // 测试
+          obj1: {
+          },
+          visible: true,
+
         }
       },
       methods: {
@@ -55,21 +67,29 @@
         // })
 
         // 2、先改值 再$forceUpdate() 相当于 $set
-        this.arr[2].name='aaa'
-        this.$forceUpdate()
+        // this.arr[2].name='aaa'
+        // this.$forceUpdate()
 
         // 3、$set
         // this.$set(this.arr[2],'name','aaaa')
 
-        console.log(this.arr,'this.arr==');
+        // console.log(this.arr,'this.arr==');
 
 
         // 对象
         // this.$set(this.obj, 'ccc', 123)
         // this.obj.ccc = 123;
 
-        // 基本数据类型
-        // this.date = '2021'
+        
+
+        // 测试响应式
+        // vue如果数据不是响应式的，那么视图数据改变不会更新变化视图。但是如果改变数据时，只要有一个响应式的数据变化，其他所有非响应式数据都会“顺带”更新了视图。
+        this.obj1.name = 'zyf'
+        console.log(this.obj1,'this.obj1===');
+
+        setTimeout(() => {
+          this.date = '2021'
+        }, 2000);
       }
     })
   </script>
