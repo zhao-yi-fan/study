@@ -19,7 +19,7 @@ function addRouteRecord (route, pathMap, parent) { // pathMap = {路径,记录}
     component: route.component,
     name: route.name,
     props: route.props,
-    params: route.params,
+    params: route.params || {},
     meta: route.meta,
   }
   if (!pathMap[path]) {

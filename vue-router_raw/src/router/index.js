@@ -45,7 +45,7 @@ const routes = [
 // 1、 hash 特点丑 兼容性好，loaction.hash = 'xx'
 // 2、 history 特点漂亮 想正常路径一样 需要服务端支持 本地开发是因为webpack的history-fallback插件 history.pushState / window.addEventListener('popstate')
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

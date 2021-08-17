@@ -1,4 +1,6 @@
 export let _Vue;
+import RouterLink from "./components/router-link";
+import RouterView from "./components/router-view";
 
 // 需要将install方法单独的进行拆分
 export function install (Vue, options) {
@@ -10,11 +12,11 @@ export function install (Vue, options) {
   Vue.mixin({
     beforeCreate () {
       // 获取每个实例，给实例添加属性
-      console.log(this.$options.router,'this.$options.router====');
       if (this.$options.router) { // this为根
         this._routerRoot = this; // 根实例挂载到_routerRoot属性上
         this._router = this.$options.router;
         this._router.init(this);
+        Vue.util.defineReactive(this, '_route', this._router.history.current);
       } else { // this为子孙辈
         this._routerRoot = this.$parent && this.$parent._routerRoot;
         // this._routerRoot._router;
@@ -23,4 +25,20 @@ export function install (Vue, options) {
       // 根._routerRoot => 父亲._routerRoot => 儿子._routerRoot => 孙子._routerRoot
     }
   })
+
+  Object.defineProperty(Vue.prototype, '$route', {
+    get () {
+      return this._routerRoot._route // current 对象里面放的都是属性 path matched
+    }
+  })
+
+  Object.defineProperty(Vue.prototype, '$router', {
+    get () {
+      return this._routerRoot._router // addRoute match
+    }
+  })
+
+  Vue.component('router-link', RouterLink);
+  Vue.component('router-view', RouterView);
+
 }
