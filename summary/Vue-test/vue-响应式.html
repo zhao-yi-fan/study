@@ -21,6 +21,10 @@
       可视区域
       {{obj1.name}}
     </div>
+    <div>
+      4、测试对象 因为obj2是响应式的，obj2加属性是可以watch到的。如果监听的是obj2.name，则不是响应式数据，watch不到。
+      {{obj2}}
+    </div>
   </div>
   <script>
 
@@ -51,13 +55,35 @@
           obj1: {
           },
           visible: true,
+          // 4、
+          obj2: {
+          }
 
         }
       },
       methods: {
-        change(){
-          console.log(this.arr,'this.arr====');
+        change() {
+          console.log(this.arr, 'this.arr====');
         }
+      },
+      watch: {
+        // 4、
+        // 可以监听到
+        obj2:{
+          handler(nv) {
+            console.log(nv, 'obj2====');
+
+          },
+          immediate: true,
+        },
+        // 不可以监听到
+        /* 'obj2.name': {
+          handler(nv) {
+            console.log(nv, 'obj2.name====');
+
+          },
+          immediate: true,
+        } */
       },
       mounted() {
         // 1、数组 push方法
@@ -80,16 +106,20 @@
         // this.$set(this.obj, 'ccc', 123)
         // this.obj.ccc = 123;
 
-        
+
 
         // 测试响应式
         // vue如果数据不是响应式的，那么视图数据改变不会更新变化视图。但是如果改变数据时，只要有一个响应式的数据变化，其他所有非响应式数据都会“顺带”更新了视图。
-        this.obj1.name = 'zyf'
-        console.log(this.obj1,'this.obj1===');
+        // this.obj1.name = 'zyf'
+        // console.log(this.obj1,'this.obj1===');
 
-        setTimeout(() => {
-          this.date = '2021'
-        }, 2000);
+        // setTimeout(() => {
+        //   this.date = '2021'
+        // }, 2000);
+
+        // 4、
+        this.obj2.name = '2222'
+        // this.$set(this.obj2, 'name', '2222')
       }
     })
   </script>
