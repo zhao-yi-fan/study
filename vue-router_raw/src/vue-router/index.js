@@ -30,9 +30,11 @@ export default class VueRouter {
     this.history.push(location)
   }
 
-  init (app) { // app根实例
-    // 路由初始化
-    // 初始化后 需要先根据路径做一次匹配，后续根据hash值的变化再次匹配
+  /**
+   * @description 路由初始化。 初始化后 需要先根据路径做一次匹配，后续根据hash值的变化再次匹配
+   * @param {*} app app根实例
+   */
+  init (app) {
     const history = this.history; // history实例
 
     const setupHashListener = () => {

@@ -1,4 +1,4 @@
-export let _Vue;
+export let _Vue; // 可以在install之后把Vue共享出去
 import RouterLink from "./components/router-link";
 import RouterView from "./components/router-view";
 
@@ -12,12 +12,12 @@ export function install (Vue, options) {
   Vue.mixin({
     beforeCreate () {
       // 获取每个实例，给实例添加属性
-      if (this.$options.router) { // this为根
+      if (this.$options.router) { // this为根组件
         this._routerRoot = this; // 根实例挂载到_routerRoot属性上
         this._router = this.$options.router;
         this._router.init(this);
         Vue.util.defineReactive(this, '_route', this._router.history.current);
-      } else { // this为子孙辈
+      } else { // this为子孙辈组件
         this._routerRoot = this.$parent && this.$parent._routerRoot;
         // this._routerRoot._router;
 

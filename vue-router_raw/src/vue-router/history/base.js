@@ -22,7 +22,7 @@ export default class History {
     // 最终核心 需要将current属性变化成响应式的 后续current变化会更新视图
 
     // /about/a => [/about /about/a]
-    this.current = createRoute(null, { // this.current = {path: '/',matched:[]}
+    this.current = createRoute(null, {
       path: '/'
     })
   }
