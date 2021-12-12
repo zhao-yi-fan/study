@@ -1,3 +1,16 @@
+/**
+ * @param {Array} record 已经存在的路由记录 
+ * @param {Object} location 当前的路由记录 { path: '/' }
+ * @returns {path: '/',matched:[{
+ *  component: 
+ *  meta: undefined
+ *  name: "Home"
+ *  params: {}
+ *  parent: null
+ *  path: "/"
+ *  props: undefined
+ * }]}
+ */
 export function createRoute (record, location) {
   let res = [];
 
@@ -27,7 +40,11 @@ export default class History {
     })
   }
 
-  // 根据路径进行组件渲染 数据变化 视图更新
+  /**
+   * @description 根据路径进行组件渲染 数据变化 视图更新
+   * @param {*} location 
+   * @param {*} onComplete 
+   */
   transitionTo (location, onComplete) { // 默认会先执行一次
     // 根据跳转的路径 获取匹配的记录
     let route = this.router.match(location); // route = {path: '/',matched:[{},{}]}

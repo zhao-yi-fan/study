@@ -38,6 +38,9 @@ export default class HashHistory extends History {
   getCurrentLocation () {
     return getHash();
   }
+  /**
+   * @description 改变
+   */
   push (location) {
     window.location.hash = location;
   }
