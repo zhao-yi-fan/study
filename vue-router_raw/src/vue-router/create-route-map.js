@@ -18,6 +18,22 @@
     ]
  * @param {*} oldPathMap 
  * @returns 
+ * {
+ *    pathMap: {
+        "/": {
+          "path": "/", "parent": null, "component": { "name": "Home", "components": {} }, "name": "Home", "params": {}
+        },
+        "/about": {
+          "path": "/about", "parent": null, "component": { "name": "About" }, "name": "About", "params": {}
+        },
+        "/about/a": {
+          "path": "/about/a", "parent": { "path": "/about", "parent": null, "component": { "name": "About" }, "name": "About", "params": {} }, "component": {}, "params": {}
+        },
+        "/about/b": {
+          "path": "/about/b", "parent": { "path": "/about", "parent": null, "component": { "name": "About" }, "name": "About", "params": {} }, "component": {}, "params": {}
+        }
+      }
+  }
  */
 export default function createRouteMap (routes, oldPathMap) {
   let pathMap = oldPathMap || {};
@@ -25,34 +41,31 @@ export default function createRouteMap (routes, oldPathMap) {
     addRouteRecord(route, pathMap, null)
   })
 
-  console.log({pathMap}, 'pathMap===');
   return {
     pathMap
   }
 
 }
 
-[{
-  "/": {
-    "path": "/", "parent": null, "component": { "name": "Home", "components": {} }, "name": "Home", "params": {}
-  },
-  "/about": {
-    "path": "/about", "parent": null, "component": { "name": "About" }, "name": "About", "params": {}
-  },
-  "/about/a": {
-    "path": "/about/a", "parent": { "path": "/about", "parent": null, "component": { "name": "About" }, "name": "About", "params": {} }, "component": {}, "params": {}
-  },
-  "/about/b": {
-    "path": "/about/b", "parent": { "path": "/about", "parent": null, "component": { "name": "About" }, "name": "About", "params": {} }, "component": {}, "params": {}
-  }
-}
-]
 
-
+/**
+ * @description 将用户传入的routes递归转成 path 映射的对象
+ * @param {*} route 
+ * {
+      "path": "/about",
+      "name": "About",
+      "component": { "name": "About", },
+      "children": [
+        { "path": "a", "component": {} }, { "path": "b", "component": {} }
+      ]
+    }
+ * @param {*} pathMap {}
+ * @param {*} parent 
+ */
 function addRouteRecord (route, pathMap, parent) { // pathMap = {路径,记录}
   // 要判断 儿子的路径不是以 / 开头的，否则不拼接 父路径
-  let path = parent ? parent.path + '/' + route.path : route.path;
-  let record = {
+  const path = parent ? parent.path + '/' + route.path : route.path;
+  const record = {
     path,
     parent, // parent 指代的父记录
     component: route.component,
@@ -61,7 +74,7 @@ function addRouteRecord (route, pathMap, parent) { // pathMap = {路径,记录}
     params: route.params || {},
     meta: route.meta,
   }
-  if (!pathMap[path]) {
+  if (!pathMap[path]) { // 路由如果不在map中则添加进去
     pathMap[path] = record
   }
 

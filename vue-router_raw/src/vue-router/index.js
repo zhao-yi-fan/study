@@ -8,9 +8,8 @@ export default class VueRouter {
     // 根据用户的配置生成一个映射表，稍后跳转时，根据路径找到对应的组件来进行渲染
 
     // 创建匹配器后，核心的方法就是匹配
-    // {match, addRoutes}
+    // this.matcher : {match, addRoutes}
     this.matcher = createMatcher(options.routes || [])
-    console.log(this.matcher);
 
     // 根据当前的mode 创建不同的history 管理策略
     switch (options.mode) {
