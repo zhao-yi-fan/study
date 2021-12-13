@@ -6,7 +6,10 @@ import RouterView from "./components/router-view";
 export function install (Vue, options) {
   console.log(Vue, options);
   _Vue = Vue;
-  // 我需要将当前的根实例提供的router属性共享给所有子组件
+
+  // Vue.prototype.router = router 这样会挂载到原型上，比如在eventBus使用方式的时候，压根没有使用router，但是也挂载到原型上，是不太好的。
+  
+  // 需要将当前的根实例提供的router属性共享给所有子组件
   // 所有子组件初始化的时候 都会去调用Vue.extend Vue.options
 
   Vue.mixin({
