@@ -1,15 +1,22 @@
 /**
+ * @description 根据当前路径 得到匹配到的结果，比如/about/a 匹配到 [/about /about/a]两个路径的页面
  * @param {Array} record 已经存在的路由记录 
  * @param {Object} location 当前的路由记录 { path: '/' }
- * @returns {path: '/',matched:[{
- *  component: 
- *  meta: undefined
- *  name: "Home"
- *  params: {}
- *  parent: null
- *  path: "/"
- *  props: undefined
- * }]}
+ * @returns {Object}
+ * {
+ *  path: '/',
+ *  matched:[
+ *   {
+ *    component: 
+ *    meta: undefined
+ *    name: "Home"
+ *    params: {}
+ *    parent: null
+ *    path: "/"
+ *    props: undefined
+ *   }
+ *  ]
+ * }
  */
 export function createRoute (record, location) {
   let res = [];
@@ -33,8 +40,7 @@ export default class History {
     this.router = router;
 
     // 最终核心 需要将current属性变化成响应式的 后续current变化会更新视图
-
-    // /about/a => [/about /about/a]
+    // 最开始的时候不知道 / 对应的是哪个组件，所以传null
     this.current = createRoute(null, {
       path: '/'
     })
@@ -52,7 +58,7 @@ export default class History {
     this.current = route; // current变量引用地址变了
     this.cb && this.cb(route);
 
-    onComplete && onComplete() // cb调用后hash监听启动 hash改变后再次调用transitionTo
+    onComplete && onComplete() // 调用后hash监听启动 hash改变后再次调用transitionTo
   }
   listen (cb) {
     this.cb = cb;

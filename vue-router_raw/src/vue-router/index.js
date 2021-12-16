@@ -36,11 +36,11 @@ export default class VueRouter {
   init (app) {
     const history = this.history; // history实例
 
-    const setupHashListener = () => {
+    const setupListener = () => {
       history.setupListener(); // 监听hash值的变化
     }
 
-    history.transitionTo(history.getCurrentLocation(), setupHashListener); // 跳转到哪里
+    history.transitionTo(history.getCurrentLocation(), setupListener); // 跳转到哪里
 
     history.listen((route) => {
       app._route = route;

@@ -14,6 +14,7 @@ export function install (Vue, options) {
 
   Vue.mixin({
     beforeCreate () {
+      console.log(this, this.$options.name,'this====');
       // 获取每个实例，给实例添加属性
       if (this.$options.router) { // this为根组件
         this._routerRoot = this; // 根实例挂载到_routerRoot属性上

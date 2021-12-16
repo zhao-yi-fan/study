@@ -27,9 +27,10 @@ export default class HashHistory extends History {
   }
   /**
    * @description hash模式的核心功能就是 监听hash值的变化
-   * hash的性能不如popstate 好用，监听浏览器历史记录的变化
+   * 
    */
   setupListener () {
+    // hashchange的性能不如高版本浏览器popstate好用，监听浏览器历史记录的变化
     window.addEventListener('hashchange', () => {
       // 根据当前hash值 去匹配对应的组件
       this.transitionTo(getHash())
