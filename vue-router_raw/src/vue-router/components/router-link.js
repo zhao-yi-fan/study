@@ -15,6 +15,12 @@ export default {
     return <tag onClick={() => {
       this.$router.push(this.to)
     }}>{this.$slots.default}</tag>
-    // return h(this.tag, {}, this.$slots.default + 'ok')
+    /* return h(this.tag, {
+      on: {
+        click: () => {
+          this.$router.push(this.to)
+        }
+      }
+    }, this.$slots.default) */
   }
 }

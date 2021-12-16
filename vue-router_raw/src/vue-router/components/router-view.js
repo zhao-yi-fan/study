@@ -2,6 +2,7 @@ export default {
   functional: true,
   name: 'router-view',
   render (h, { data, parent }) { // class组件 Vue.extend 函数式组件 函数可以节省性能  缺陷是没有实例
+    console.log(11111111111);
     let route = parent.$route; // 做依赖收集
     let depth = 0;
     let records = route.matched;

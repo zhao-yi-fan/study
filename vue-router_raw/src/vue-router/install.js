@@ -4,7 +4,6 @@ import RouterView from "./components/router-view";
 
 // 需要将install方法单独的进行拆分
 export function install (Vue, options) {
-  console.log(Vue, options);
   _Vue = Vue;
 
   // Vue.prototype.router = router 这样会挂载到原型上，比如在eventBus使用方式的时候，压根没有使用router，但是也挂载到原型上，是不太好的。
@@ -23,7 +22,6 @@ export function install (Vue, options) {
         Vue.util.defineReactive(this, '_route', this._router.history.current);
       } else { // this为子孙辈组件
         this._routerRoot = this.$parent && this.$parent._routerRoot;
-        // this._routerRoot._router;
 
       }
       // 根._routerRoot => 父亲._routerRoot => 儿子._routerRoot => 孙子._routerRoot

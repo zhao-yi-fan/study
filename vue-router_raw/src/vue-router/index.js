@@ -42,6 +42,7 @@ export default class VueRouter {
 
     history.transitionTo(history.getCurrentLocation(), setupListener); // 跳转到哪里
 
+    // 传递一个回调函数 用来更新 响应式route的值
     history.listen((route) => {
       app._route = route;
     })
