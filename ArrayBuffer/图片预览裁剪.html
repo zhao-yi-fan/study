@@ -37,7 +37,9 @@
             <button type="button" class="btn btn-primary" @click="confirm">剪切</button>
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <img :src="avatarSrc" v-if="avatarSrc">
+        </div>
       </div>
     </div>
   </div>
@@ -54,7 +56,8 @@
           startY: 0, // 鼠标按下的开始y坐标
           startDrag: false,
           lastX: 0,
-          lastY: 0
+          lastY: 0,
+          avatarSrc: '',
         };
       },
       methods: {
@@ -92,8 +95,17 @@
           this.lastY = e.clientY - this.startY + this.lastY;
           this.startDrag = false;
         },
-        confirm() {
-
+        confirm(e) {
+          let canvas = this.$refs.canvas;
+          let ctx = canvas.getContext('2d');
+          let imageData = ctx.getImageData(100, 100, 100, 100);
+          let avatarCanvas = document.createElement('canvas');
+          avatarCanvas.width = 100;
+          avatarCanvas.height = 100;
+          let avatarCtx = avatarCanvas.getContext('2d');
+          avatarCtx.putImageData(imageData, 0, 0)
+          let dataUrl = avatarCanvas.toDataURL();
+          this.avatarSrc = dataUrl;
         },
         drawImage(left = this.lastX, top = this.lastY) {
           console.dir(this.$refs.showImage, 'this.$refs.showImage;===');
