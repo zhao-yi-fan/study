@@ -24,13 +24,17 @@
           <img className="img-responsive" ref="showImage" @load="drawImage()" :src="dataURL" alt="" v-if="file"
                style="border: 2px dashed green;">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" @mouseDown="handleMouseDown" @mouseMove="handleMouseMove" @mouseUp="handleMouseUp">
           <div style="position: relative;">
             <canvas width="300px" ref="canvas" height="300px" style="border: 2px dashed green;"></canvas>
             <div
                  style="width:100px;height:100px;position: absolute;left:100px;top:100px;background-color: yellow;opacity: 0.3;">
-
             </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" @click="bigger">变大</button>
+            <button type="button" class="btn btn-primary" @click="smaller">变小</button>
+            <button type="button" class="btn btn-primary" @click="confirm">剪切</button>
           </div>
         </div>
         <div class="col-md-4"></div>
@@ -45,6 +49,10 @@
         return {
           file: null, // 选中的文件
           dataURL: "", // base64
+          times: 1, // 放大倍数
+          startX: 0, // 鼠标按下的开始x坐标
+          startY: 0, // 鼠标按下的开始y坐标
+          startDrag: false,
         };
       },
       methods: {
@@ -58,7 +66,32 @@
           };
           fileReader.readAsDataURL(file);
         },
-        drawImage() {
+        bigger() {
+          this.times += 0.1;
+          this.drawImage()
+        },
+        smaller() {
+          this.times -= 0.1;
+          this.drawImage()
+        },
+        handleMouseDown(e) {
+          this.startX = e.clientX;
+          this.startY = e.clientY;
+          this.startDrag = true;
+        },
+        handleMouseMove(e) {
+          if (this.startDrag) {
+            this.drawImage(e.clientX - this.startX, e.clientY - this.startY);
+          }
+
+        },
+        handleMouseUp(e) {
+          this.startDrag = false;
+        },
+        confirm() {
+
+        },
+        drawImage(left = 0, top = 0) {
           console.dir(this.$refs.showImage, 'this.$refs.showImage;===');
           let image = this.$refs.showImage;
           let canvas = this.$refs.canvas;
@@ -68,14 +101,14 @@
           let imageHeight = image.height;
           if (imageWidth > imageHeight) {
             let scale = canvas.width / imageWidth;
-            imageWidth = canvas.width;
-            imageHeight = imageHeight * scale;
+            imageWidth = canvas.width * this.times;
+            imageHeight = imageHeight * scale * this.times;
           } else {
             let scale = canvas.height / imageHeight;
-            imageHeight = canvas.height;
-            imageWidth = imageWidth * scale;
+            imageHeight = canvas.height * this.times;
+            imageWidth = imageWidth * scale * this.times;
           }
-          ctx.drawImage(image, 0, 0, imageWidth, imageHeight)
+          ctx.drawImage(image, (canvas.width - imageWidth) / 2 + left, (canvas.height - imageHeight) / 2 + top, imageWidth, imageHeight)
         }
       },
       mounted() { },
