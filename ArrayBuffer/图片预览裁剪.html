@@ -53,6 +53,8 @@
           startX: 0, // 鼠标按下的开始x坐标
           startY: 0, // 鼠标按下的开始y坐标
           startDrag: false,
+          lastX: 0,
+          lastY: 0
         };
       },
       methods: {
@@ -81,17 +83,19 @@
         },
         handleMouseMove(e) {
           if (this.startDrag) {
-            this.drawImage(e.clientX - this.startX, e.clientY - this.startY);
+            this.drawImage(e.clientX - this.startX + this.lastX, e.clientY - this.startY + this.lastY);
           }
 
         },
         handleMouseUp(e) {
+          this.lastX = e.clientX - this.startX + this.lastX;
+          this.lastY = e.clientY - this.startY + this.lastY;
           this.startDrag = false;
         },
         confirm() {
 
         },
-        drawImage(left = 0, top = 0) {
+        drawImage(left = this.lastX, top = this.lastY) {
           console.dir(this.$refs.showImage, 'this.$refs.showImage;===');
           let image = this.$refs.showImage;
           let canvas = this.$refs.canvas;
