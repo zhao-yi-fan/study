@@ -39,6 +39,7 @@
         </div>
         <div class="col-md-4">
           <img :src="avatarSrc" v-if="avatarSrc">
+          <button type="button" class="btn btn-primary" @click="upload">上传</button>
         </div>
       </div>
     </div>
@@ -125,6 +126,26 @@
             imageWidth = imageWidth * scale * this.times;
           }
           ctx.drawImage(image, (canvas.width - imageWidth) / 2 + left, (canvas.height - imageHeight) / 2 + top, imageWidth, imageHeight)
+        },
+        upload() {
+          // 不能直接上传 base64 同一个图片 base64比二进制大
+          // base64 3个字节变成4个字节
+          console.log(this.avatarSrc, 'this.avatarSrc==');
+          let bytes = atob(this.avatarSrc.split(',')[1]);
+          console.log(bytes, 'bypes=');
+          let arrayBuffer = new ArrayBuffer(bytes.length);
+          let uInt8Array = new Uint8Array(arrayBuffer);
+          for (let i = 0; i < bytes.length; i++) {
+            uInt8Array[i] = bytes.charCodeAt[i];
+          }
+          let blob = new Blob([arrayBuffer], {
+            type: 'image/png'
+          })
+          let formData = new FormData();
+          formData.append('file',blob)
+          let xhr = new XMLHttpRequest()
+          xhr.open('POST', '/upload', true);
+          xhr.send()
         }
       },
       mounted() { },
