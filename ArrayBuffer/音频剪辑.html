@@ -16,22 +16,41 @@
   <div id="app">
     <input type="text" v-model="start">
     <input type="text" v-model="end">
-    <button type="button" class="btn-primary">clip</button>
+    <button type="button" class="btn-primary" @click="clip">clip</button>
     <audio src="" controls></audio>
-    <audio src="" controls></audio>
+    <audio src="" controls ref="audioCilpRef"></audio>
   </div>
   <script>
+    function createWorker(path) {
+      return new Worker(path)
+    }
 
     new Vue({
       el: "#app",
       data() {
         return {
           start: 0,
-          end: 0,
+          end: 10,
         };
       },
       methods: {
+        async clip() {
+          this.worker = createWorker('/node_modules/ffmpeg.js/ffmpeg-worker-mp4.js')
+          let res = await axios({ url: '/song.mp3', responseType: 'arraybuffer' });
+          let originBuffer = res.data;
+          let start = +this.start;
+          let end = +this.end;
+          let duration = end - start; // 持续时间
+          let reuslt = (await toPromise(
+            this.worker,
+            getClipCommand(originBuffer, start, duration)
+          ))
+          let blob = bufferToBlob(result);
 
+          this.$refs.audioCilpRef.src = URL.createObjectURL(blob);
+          this.$refs.audioCilpRef.load();
+          this.$refs.audioCilpRef.play();
+        }
       },
       mounted() { },
     });
