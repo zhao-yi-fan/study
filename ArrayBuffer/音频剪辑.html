@@ -10,6 +10,7 @@
         crossorigin="anonymous" />
   <script src="/node_modules/vue/dist/vue.js"></script>
   <script src="/node_modules/ffmpeg.js/ffmpeg-worker-mp4.js"></script>
+  <script src="/node_modules/axios/dist/axios.js"></script>
 </head>
 
 <body>
@@ -17,12 +18,46 @@
     <input type="text" v-model="start">
     <input type="text" v-model="end">
     <button type="button" class="btn-primary" @click="clip">clip</button>
-    <audio src="" controls></audio>
+    <audio src="./song.mp3" controls></audio>
     <audio src="" controls ref="audioCilpRef"></audio>
   </div>
   <script>
     function createWorker(path) {
       return new Worker(path)
+    }
+    function bufferToBlob(buffer) {
+      return new File([buffer], 'clip.mp3', { type: 'audio/mpeg' })
+    }
+
+    function getClipCommand(arraybuffer, start = 0, duration = 10) {
+      return {
+        type: 'run',
+        arguments: `-ss ${start} -i input.mp3 ${duration ? `-t ${duration} ` : ''
+          }-acodec copy output.mp3`.split(' '),
+        MEMFS: [
+          {
+            data: new Uint8Array(arraybuffer),
+            name: 'input.mp3'
+          }
+        ]
+      }
+    }
+
+    function toPromise(worker, command) {
+      return new Promise((resolve) => {
+        const onSuccess = function (e) {
+          switch (e.data.type) {
+            case 'done':
+              worker.removeEventListener('message', onSuccess)
+              resolve(e)
+              break;
+            default:
+              break;
+          }
+        }
+        worker.addEventListener('message', onSuccess)
+        command && worker.postMessage(command)
+      })
     }
 
     new Vue({
@@ -36,17 +71,17 @@
       methods: {
         async clip() {
           this.worker = createWorker('/node_modules/ffmpeg.js/ffmpeg-worker-mp4.js')
-          let res = await axios({ url: '/song.mp3', responseType: 'arraybuffer' });
+          let res = await axios({ url: './song.mp3', responseType: 'arraybuffer' });
           let originBuffer = res.data;
           let start = +this.start;
           let end = +this.end;
           let duration = end - start; // 持续时间
-          let reuslt = (await toPromise(
+          let result = (await toPromise(
             this.worker,
             getClipCommand(originBuffer, start, duration)
-          ))
+          ));
+          result = result.data.data.MEMFS[0].data
           let blob = bufferToBlob(result);
-
           this.$refs.audioCilpRef.src = URL.createObjectURL(blob);
           this.$refs.audioCilpRef.load();
           this.$refs.audioCilpRef.play();

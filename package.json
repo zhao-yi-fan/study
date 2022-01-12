@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "animate.css": "^4.1.1",
+    "axios": "^0.24.0",
     "big.js": "^6.1.1",
     "ffmpeg.js": "^4.2.9003",
     "jquery": "^1.12.4",
