@@ -27,6 +27,9 @@ function createDOM (vdom) {
   let dom; // 真实DOM
   if (type === REACT_TEXT) { // 如果这个元素是一个文本的话
     dom = document.createTextNode(props.content)
+  } else if (typeof type === 'function') {
+    return mountFunctionComponent(vdom);
+
   } else {
     dom = document.createElement(type); // div span p
   }
@@ -44,6 +47,13 @@ function createDOM (vdom) {
     }
   }
   return dom;
+}
+
+function mountFunctionComponent (vdom) {
+  let { type, props } = vdom;
+  let renderVdom = type(props);
+  vdom.oldRenderVdom = renderVdom; // 现在没用到 后面进行组件更新使用
+  return createDOM(renderVdom);
 }
 
 function reconcileChildren (childrenVdom, parentDOM) {
