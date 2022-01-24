@@ -21,7 +21,7 @@ function mount (vdom, parentDOM) {
 /**
  * 把虚拟DOM转成真实DOM
  */
-function createDOM (vdom) {
+export function createDOM (vdom) {
   if (!vdom) return null;
   let { type, props } = vdom;
   let dom; // 真实DOM
@@ -49,6 +49,7 @@ function createDOM (vdom) {
       }
     }
   }
+  vdom.dom = dom; // 让虚拟DOM的dom属性指向这个DOM对应的真实DOM
   return dom;
 }
 
@@ -56,7 +57,7 @@ function mountClassComponent (vdom) {
   let { type: ClassComponent, props } = vdom;
   let classInstance = new ClassComponent(props);
   let renderVdom = classInstance.render(props);
-  vdom.oldRenderVdom = renderVdom;
+  classInstance.oldRenderVdom = vdom.oldRenderVdom = renderVdom;
   return createDOM(renderVdom);
 }
 
@@ -86,6 +87,8 @@ function updateProps (dom, oldProps, newProps) {
       for (let attr in styleObj) {
         dom.style[attr] = styleObj[attr];
       }
+    } else if (key.startsWith('on')) {
+      dom[key.toLocaleLowerCase()] = newProps[key];
     } else {
       dom[key] = newProps[key]; // className
     }
@@ -93,10 +96,32 @@ function updateProps (dom, oldProps, newProps) {
   }
 }
 
+export function findDOM (vdom) {
+  if (!vdom) return null;
+  if (vdom.dom) { // dom={type: 'h1'}
+    return vdom.dom;
+  } else {
+    // 类组件 还是函数组件，他们虚拟DOM身上没有dom属性，
+    return findDOM(vdom.oldRenderVdom);
+  }
+}
+
+/**
+ * dom-diff核心是比较 新旧DOM的差异，然后把差异同步到真实DOM上
+ * @param {*} parentDOM 
+ * @param {*} oldVdom 
+ * @param {*} newVdom 
+ */
+export function compareTwoVdom (parentDOM, oldVdom, newVdom) {
+  let oldDOM = findDOM(oldVdom);
+  // 根据新的虚拟DOM得到新的真实DOM
+  let newDOM = createDOM(newVdom);
+  // 把老的真实DOM替换成
+  parentDOM.replaceChild(newDOM, oldDOM);
+}
 
 const ReactDOM = {
   render
-
 }
 
 export default ReactDOM
