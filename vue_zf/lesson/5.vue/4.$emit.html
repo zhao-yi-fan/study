@@ -12,11 +12,20 @@
   <div id="app">
     <!-- .native 修饰符 相当于给组件的模板最外层添加事件 -->
     <!-- <my-button @click.native="show2"></my-button> -->
-    <my-button @click="show2" @mouseup="show1"></my-button>
+    <my-button @click="show2" @mouseup="show1" name="xx" :age="18">
+      <template #default>default</template>
+      <template #title>title</template>
+      <template #prepend>prepend</template>
+      <template #append>append</template>
+    </my-button>
   </div>
-  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="/node_modules/vue/dist/vue.js"></script>
   <script>
     Vue.component('my-button',{
+      inheritAttrs: false, // false: 不挂载到真实DOM上
+      props: {
+        name: String,
+      },
       data(){
         return {msg:'点我啊'}
       },
@@ -26,9 +35,15 @@
       // 把事件整体传入 事件必须是存在的事件
       // template: `<div><button v-on="$listeners">{{msg}}</button></div>`,
       // 触发自己身上的click事件
-      template: `<div><button @click="$emit('click')">{{msg}}</button></div>`,
-      
-
+      template: `<div>
+        <slot name="prepend"></slot><button @click="$emit('click')">{{msg}}<slot /></button>
+        <slot name="append"></slot>
+        </div>`,
+      mounted(){
+        console.log(this);
+        console.log(this.$attrs); // 将props的数据排除了
+        console.log(this.$listeners);
+      }
     })
     let vm = new Vue({
       el: '#app',
