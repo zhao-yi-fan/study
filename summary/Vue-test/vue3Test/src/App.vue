@@ -1,28 +1,19 @@
 <script setup>
-import { isRef, reactive, ref, toRefs, unref } from "vue";
-let count = ref(0);
-const customObj = {
-  count,
-};
+import { isRef, reactive, ref, toRef, toRefs, unref } from "vue";
 const state = reactive({
-  count,
+  count: 1,
 });
+const countRef = toRef(state, 'count')
 
-console.log(count, "count===");
 console.log(state, "state====");
 console.log(state.count, "state.count====");
-console.log(state.count === count.value); // true
-const stateFn = () => {};
+console.log(countRef,'countRef===');
 </script>
 
 <template>
-  <button @click="stateFn">state</button>
-  <br />
-  <span>{{ count }}</span>
-  <br />
-  <span>customObj:{{ customObj }}</span>
-  <br />
   <span>state:{{ state }}</span>
+  <br />
+  <span>countRef:{{ countRef }}</span>
   <br />
 </template>
 
