@@ -72,6 +72,51 @@ Uncaught (in promise) Error: 报错啦
 
 
 
+/* 
+4、 加了catch就不阻塞代码了，finally依然阻塞
+ */
+// => 11111111111
+/* function aaa(){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error('报错啦'))
+    }, 3000)
+  }).then((result1) => {
+    console.log('result1', result1);
+    return result1
+  }).catch(()=>{
+
+  })
+}
+async function bbb(){
+  await aaa()
+  console.log('11111111111');
+}
+
+bbb() */
+
+// => Uncaught (in promise) Error: 报错啦
+/* function aaa(){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error('报错啦'))
+    }, 3000)
+  }).then((result1) => {
+    console.log('result1', result1);
+    return result1
+  }).finally(()=>{
+
+  })
+}
+async function bbb(){
+  await aaa()
+  console.log('11111111111');
+}
+
+bbb() */
+
+
+
 
 
 
