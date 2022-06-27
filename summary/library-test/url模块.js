@@ -19,7 +19,8 @@ console.log(obj.query)
 //     query: 'name=撒大声地&message=奥术大师多',
 //     pathname: '/pinglun',
 //     path: '/pinglun?name=撒大声地&message=奥术大师多',
-//     href: '/pinglun?name=撒大声地&message=奥术大师多' }
+//     href: '/pinglun?name=撒大声地&message=奥术大师多'
+// }
 
 //加了true
 // Url {
@@ -34,4 +35,5 @@ console.log(obj.query)
 //     query: [Object: null prototype] { name: '撒大声地', message: '奥术大师多' },
 //     pathname: '/pinglun',
 //     path: '/pinglun?name=撒大声地&message=奥术大师多',
-//     href: '/pinglun?name=撒大声地&message=奥术大师多' }
+//     href: '/pinglun?name=撒大声地&message=奥术大师多' 
+// }

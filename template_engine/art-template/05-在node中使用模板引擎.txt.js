@@ -21,7 +21,7 @@ var fs = require('fs')
 
 // 这里不是浏览器
 //template('script 标签 id', {对象})
-fs.readFile('./tpl.html', function(err, data){
+fs.readFile(__dirname + './tpl.html', function(err, data){
     if (err) {
         return console.log('读取文件失败了');
         

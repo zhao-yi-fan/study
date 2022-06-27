@@ -5,11 +5,11 @@ var server = http.createServer()
 
 
 
-var wwwDir = 'C:/Users/99344/Desktop/2018web/听课/14.node/day02/www'
+var wwwDir =  __dirname // 'C:/Users/99344/Desktop/2018web/听课/14.node/day02/www'
 
 server.on('request', function (req, res) {
     var url = req.url
-    fs.readFile('./template-apache.html', function (err, data) {
+    fs.readFile(__dirname + '/template-apache.html', function (err, data) {
         if (err) {
             return res.end('404 Not Found')
         }
