@@ -3,7 +3,7 @@
 // https://juejin.cn/post/6844903694039777288
 
 /**
- * @descrition ToBoolean指其他类型转换为布尔类型的操作。
+ * @description ToBoolean指其他类型转换为布尔类型的操作。
  * js中的假值只有false、null、undefined、空字符、0和NaN，其它值转为布尔型都为true。
  */
 
@@ -18,7 +18,7 @@ console.log(Boolean(Infinity)) // true
 
 
 /**
- * @descrition toNumber
+ * @description toNumber
  */
 
 // 【重】null => 0
@@ -58,7 +58,7 @@ console.log(Boolean(Infinity)) // true
 
 
 /**
- * @descrition toString
+ * @description toString
  */
 
 
