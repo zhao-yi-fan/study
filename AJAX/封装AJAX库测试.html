@@ -12,11 +12,10 @@
     <script src="js/ajax.js"></script>
     <script>
         ajax({
-            url: 'https://www.easy-mock.com/mock/5b0412beda8a195fb0978627/temp/list',
+            url: 'http://jsonplaceholder.typicode.com/albums',
             method: 'GET',
             data: {
-                name: '赵一凡',
-                age: 28
+                userId: 9
             },
             cache: true,
             success: (result, xhr) => {
