@@ -15,7 +15,7 @@
 // console.log(a);//=> Uncaught ReferenceError: a is not defined (引用错误)
 
 // let a = 12;
-// console.log(window.a);//=> undefinded
+// console.log(window.a);//=> undefined
 // console.log(a); //=> 12
 
 

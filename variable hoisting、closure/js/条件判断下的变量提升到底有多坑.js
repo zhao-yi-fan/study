@@ -3,7 +3,7 @@
  *      function fn;
  */
 
-console.log(fn); //=> undefinded
+console.log(fn); //=> undefined
 
 if (1 === 1) {
     console.log(fn);//=> 函数本身: 当条件成立, 进入到判断体中(在ES6 中它是一个块级作用域.)第一件事并不是执行代码, 而是类似于变量提升一样(自我重复检测机制),先把fn声明和定义了, 也就是判断体中代码执行之前, fn就已经赋值了

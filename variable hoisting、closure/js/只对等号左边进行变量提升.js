@@ -7,7 +7,7 @@
 sum();
 
 fn(); // => Uncaught TypeError: fn is not a function 类型错误
-// fn现在是undefinded, undefinded不是函数, 不能执行, 会报错
+// fn现在是undefined, undefined不是函数, 不能执行, 会报错
 
 // 匿名函数之函数表达式
 var fn = function () {

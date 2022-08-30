@@ -21,7 +21,7 @@
  *         = ... (4)
  * 
  * 注意:1. var fn = 100 变量提升的时候, 因为fn已经声明了, 不需要再次声明.fn此时没有任何操作.
- *      2. 不能认为 var fn = undefinded. 是因为没赋值,只声明了, 没有值的情况下是undefinded,并不是赋值了undefinded.
+ *      2. 不能认为 var fn = undefined. 是因为没赋值,只声明了, 没有值的情况下是undefined,并不是赋值了undefined.
  *          所以认为是声明fn, 但是fn已经存在了.
  */
 
