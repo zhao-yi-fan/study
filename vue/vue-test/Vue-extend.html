@@ -5,38 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/vue@2.7.10/dist/vue.js"></script>
   </head>
 
   <body>
     <div id="mount-point">
-      <aaa  @dianji="dianjifuqin($event)" @click="show1()" @mouseover="show2()"/>
+      <aaa />
     </div>
     <script>
-      /* let profile = Vue.extend({
-        template: `<div>{{firstName}}++{{lastName}}</div>`,
-        data: function() {
-          return {
-            firstName: "赵",
-            lastName: "一凡"
-        }
-      })
-      new profile().$mount("#mount-point") */
+      
       Vue.component("aaa", {
-        props:{
-          number: {
-            type: Number,
-            default: 3
-          },
-          arr:{
-            type: Array,
-            default:()=>[0,1,2]
-          }
-        },
-        data: function() {
+        data() {
           return {
             count: 0,
-            name:'zhaoyifan'
           }
         },
         mounted(){
@@ -44,28 +25,28 @@
         },
         methods:{
           clickHandle(){
-            let a = this.count++;
-            this.$emit('dianji',a,this.name)
+            this.count++;
+            let countFather = this.count
+            let component = Vue.extend({
+              template: `<div>{{firstName}}{{lastName}}{{countSon}}</div>`,
+              data() {
+                return {
+                  firstName: "赵",
+                  lastName: "一凡",
+                  countSon: countFather
+                }
+              }
+            })
+            let vm = new component().$mount()
+            console.log(vm,'vm===');
+            document.body.appendChild(vm.$el)
           }
         },
-        template: `<button v-on="$listeners"  @click="clickHandle">点击了{{ count }}次.number:{{number}} arr[1]:{{arr[1]}}</button>`
+        template: `<button v-on="$listeners"  @click="clickHandle">点击了{{ count }}次.</button>`
       })
       console.dir(Vue.component('aaa'));
       new Vue({
         el: "#mount-point",
-        methods:{
-          
-          show1(){
-            console.log('点击了')
-          },
-          dianjifuqin(a){
-            console.log(a)
-            // console.log(b)
-          },
-          show2(){
-            console.log('鼠标移入')
-          }
-        }
       })
     </script>
   </body>
