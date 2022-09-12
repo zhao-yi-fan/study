@@ -14,17 +14,15 @@
   <script type="text/babel">
 
     class LikeButton extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = { liked: false };
-      }
-      changeLike () {
+      state = { liked: false }
+      changeLike = () => {
+        console.log(this);
         this.setState({ liked: !this.state.liked })
       }
       render () {
         return (
           <div>
-            <button onClick={() => this.changeLike()}>Like</button>
+            <button onClick={this.changeLike}>Like</button>
             <br />
             <span>{this.state.liked ? 'liked' : 'not like'}</span>
           </div>
