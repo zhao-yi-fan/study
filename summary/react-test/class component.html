@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <title>Add React in One Minute</title>
-</head>
-
-<body>
-  <div id="like_button_container"></div>
-
   <script src="//unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
   <script src="//unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
   <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
   <script type="text/babel">
 
     class LikeButton extends React.Component {
@@ -19,17 +18,20 @@
         super(props);
         this.state = { liked: false };
       }
-
+      changeLike () {
+        this.setState({ liked: !this.state.liked })
+      }
       render () {
-        if (this.state.liked) {
-          return 'You liked this.';
-        }
-
-        return (<button onClick={() => { this.setState({ liked: true }) }}>Like</button>)
+        return (
+          <div>
+            <button onClick={() => this.changeLike()}>Like</button>
+            <br />
+            <span>{this.state.liked ? 'liked' : 'not like'}</span>
+          </div>
+        )
       }
     }
-
-    const domContainer = document.querySelector('#like_button_container');
+    const domContainer = document.querySelector('#app');
     ReactDOM.render(<LikeButton />, domContainer);
   </script>
 
