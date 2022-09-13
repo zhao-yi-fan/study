@@ -15,38 +15,18 @@
 <body>
   <div id="app"></div>
   <script type="text/babel">
-
-    console.log(PropTypes, 'PropTypes===');
-    const { useState, useContext } = React;
-    class Person extends React.Component {
-      constructor(props){
-        super()
-        console.log(this.props); // 仅super()，在构造器中this.props是undefined
-      }
-      static propTypes = {
-        // name: React.PropTypes.string, // 15版本的时候PropTypes是挂在React上，16版本之后拆出成prop-types了
-        name: PropTypes.string.isRequired,
-        sex: PropTypes.string,
-        age: PropTypes.number,
-        speak: PropTypes.func // 方法是func
-      }
-      static defaultProps = {
-        sex: '男',
-        age: 18,
-      }
-      render () {
-        return (
-          <div>
-            <p>姓名：{this.props.name}</p>
-            <p>性别：{this.props.sex}</p>
-            <p>年龄：{this.props.age}</p>
-            <button onClick={this.props.speak}>说话</button>
-          </div>
-        )
-      }
+    function Person (props) {
+      const { name, sex, age, speak } = props;
+      return (
+        <div>
+          <p>姓名：{name}</p>
+          <p>性别：{sex}</p>
+          <p>年龄：{age}</p>
+          <button onClick={speak}>说话</button>
+        </div>
+      )
     }
 
-    /* 
     // 校验规则
     Person.propTypes = {
       // name: React.PropTypes.string, // 15版本的时候PropTypes是挂在React上，16版本之后拆出成prop-types了
@@ -59,8 +39,7 @@
     Person.defaultProps = {
       sex: '男',
       age: 18,
-    } 
-    */
+    }
     const person = {
       name: '张三',
       // age: 18,,
@@ -69,6 +48,7 @@
         console.log('说话');
       }
     }
+
     const domContainer = document.querySelector('#app');
     ReactDOM.render(
       <Person {...person} />,

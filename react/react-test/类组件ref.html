@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
+  <script src="//unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
+  <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    /**
+     * 1. ref字符串
+     * 2. React.createRef
+     * 3. ref回调函数
+     */
+
+    class Demo extends React.Component {
+      state = {
+        isHot: false,
+      }
+
+      clickHandle = () => {
+        const { input1 } = this.refs
+        alert(input1.value)
+      }
+
+      blurHandle = () => {
+        const { input2 } = this
+        alert(input2.value)
+      }
+
+      refHandle = (c) => {
+        this.input2 = c;
+        console.log('绑定ref', c);
+      }
+      changeData = () => {
+        const { isHot } = this.state
+        this.setState({
+          isHot: !isHot
+        })
+      }
+      render () {
+        const { isHot } = this.state;
+        return (
+          <div>
+            <p>1 ref字符串</p>
+            <input ref="input1" type="text" />
+            <button onClick={this.clickHandle}>点击输出value</button>
+            <br />
+            
+            <p>2 ref回调函数</p>
+            <span onClick={this.changeData}>点击更新天气 {isHot ? '炎热' : '凉爽'}</span>
+            <br />
+            {/* ref回调写在内联中，组件更新时会执行两次，第一次是null */}
+            <input onBlur={this.blurHandle} ref={c => { this.input2 = c; console.log('内联ref', c); }} type="text" placeholder="ref回调内联" />
+            <br />
+            <input onBlur={this.blurHandle} ref={this.refHandle} type="text" placeholder="ref回调绑定函数" />
+
+          </div>
+        )
+      }
+    }
+
+    const domContainer = document.querySelector('#app');
+    ReactDOM.render(
+      <Demo />,
+      domContainer);
+
+  </script>
+</body>
+
+</html>
