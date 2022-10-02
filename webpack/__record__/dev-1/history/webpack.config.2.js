@@ -18,7 +18,7 @@ module.exports = {
   },
   plugins: [ // 数组 放着所有的webpack插件
     new HtmlWebpackPlugin({
-      template: './src/index.html', // 以哪个html作为模板
+      template: './public/index.html', // 以哪个html作为模板
       filename: 'index.html', // 设置打包后生成的html模板，不设置默认也是index.html
       minify: { // 简化html
         removeAttributeQuotes: true, // 删除属性的双引号
