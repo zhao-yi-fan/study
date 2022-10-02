@@ -16,6 +16,9 @@
   <script type="text/babel">
     const { useEffect, useMemo, useState } = React;
 
+    /**
+     * 把数据和动作抽离成一个函数组件ChildN， ChildN中的动作不会触发父元素render
+     */
     function App () {
       const [m, setM] = useState(0);
       const addChild = () => {
@@ -29,13 +32,16 @@
         <div>
           <div>
             <ChildN />
+            <hr />
             <button onClick={addChild}>m+1</button>
           </div>
+          <hr />
           <Child data={m} onClick={onClickChild} />
         </div>
       )
     }
     function ChildN (props) {
+      console.log('ChildN执行了')
       const [n, setN] = useState(0)
       const add = () => {
         setN(i => i + 1);
