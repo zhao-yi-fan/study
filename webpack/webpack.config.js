@@ -3,8 +3,6 @@ let HtmlWebpackPlugin = require('html-webpack-plugin')
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let OptimizeCss = require('optimize-css-assets-webpack-plugin');
 let TerserJSPlugin = require('terser-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader')
-// const VueLoaderPlugin = require('vue-loader/lib/plugin');
 let webpack = require('webpack');
 module.exports = {
   optimization: {
@@ -13,32 +11,20 @@ module.exports = {
       new OptimizeCss({}),
     ]
   },
-  mode: 'development', // production development
+  mode: 'development',
   entry: './src/index.js',
-  // devtool: 'source-map',
-  /**
-   * false 或者 ''
-   * eval 默认
-   * eval-source-map
-   * cheap-source-map 
-   * cheap-module-source-map
-   * eval-cheap-module-source-map
-   * inline-cheap-source-map
-   * sourcemap 
-   * inline-source-map
-  */
   output: {
     filename: 'bundle.[hash:8].js',
     path: path.resolve(__dirname, 'build'),
+    // publicPath: 'http://www.127398j.com' // 所有的静态资源css js img都加域名前缀(CDN)
   },
   plugins: [
-    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.css'
+      filename: 'css/main.css'
     }),
   ],
   externals: {
@@ -47,33 +33,34 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/,
-        use: 'vue-loader',
-      },
-      {
         test: /\.html$/,
-        use: 'html-withimg-loader'
+        use: 'html-withimg-loader' // 解析html中的图片
       },
       {
         test: /\.(png|jpg|gif)$/,
         // 做一个限制 当我们的图片 小于多少k的时候 用base64 来转化
         // 否则用file-loader产生真实的图片
-        // use: 'file-loader'
+        /* loader: 'file-loader',
+        options: {
+          outputPath: '/img/'
+        } */
         use: {
           loader: 'url-loader',
           options: {
-            limit: 200 * 1024
+            // limit: 1, // 正常生成不转base64
+            limit: 50 * 1024, // 小于50k转base64
+            outputPath: '/img/',
+            publicPath: 'http://www.127398j.com' // 只给img增加(CDN)
           }
         }
       },
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env',
-              '@vue/babel-preset-jsx'
+              '@babel/preset-env'
             ],
             plugins: [
               ["@babel/plugin-proposal-decorators", { "legacy": true }],
@@ -84,7 +71,7 @@ module.exports = {
                 //   corejs: 3,
                 //   proposals: true
                 // }
-              ],
+              ]
             ]
           }
         },
@@ -103,7 +90,6 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          'vue-style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
