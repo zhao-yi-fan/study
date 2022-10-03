@@ -2,7 +2,7 @@
 // 1）在js中创建图片来引入
 // file-loader默认会在内部生成一张图片 到build目录下，把生成的图片的名字返回回来
 import logo from './logo.jpg' // 把图片引入，返回的结果是一个新的图片地址
-console.log(logo)
+console.log(logo, 123)
 let image = new Image();
 image.src = logo; // 就是一个普通的图片
 document.body.appendChild(image);
