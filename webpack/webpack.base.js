@@ -1,19 +1,10 @@
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
-let OptimizeCss = require('optimize-css-assets-webpack-plugin');
-let TerserJSPlugin = require('terser-webpack-plugin');
 let webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  optimization: {
-    minimizer: [
-      // new TerserJSPlugin({}),
-      new OptimizeCss({}),
-    ]
-  },
-  mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'bundle.[hash:8].js',
@@ -27,8 +18,6 @@ module.exports = {
     alias: { // 别名
       // bootstrap: 'bootstrap/dist/css/bootstrap.css'
     }
-  },
-  devServer: {
   },
   plugins: [
     new HtmlWebpackPlugin({
