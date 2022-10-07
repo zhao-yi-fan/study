@@ -38,8 +38,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
-    new webpack.HotModuleReplacementPlugin(), // 热更新插件
-    new webpack.NamedChunksPlugin(), // 打印更新的模块路径
+    // new webpack.HotModuleReplacementPlugin(), // 热更新插件
+    // new webpack.NamedChunksPlugin(), // 打印更新的模块路径
   ],
   module: {
     rules: [
