@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/**啦啦啦1**/
 
 var _p$getName, _p$getName2;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -128,7 +128,7 @@ console.log((_p$getName2 = p.getName()) !== null && _p$getName2 !== void 0 ? _p$
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/**啦啦啦1**/
 
 __webpack_require__(/*! ./1 */ "./src/1.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
