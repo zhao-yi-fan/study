@@ -86,14 +86,37 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./loaders/inline-loader.js!./src/a.js":
-/*!*********************************************!*\
-  !*** ./loaders/inline-loader.js!./src/a.js ***!
-  \*********************************************/
+/***/ "./src/1.js":
+/*!******************!*\
+  !*** ./src/1.js ***!
+  \******************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log('aaa')\n\n//# sourceURL=webpack:///./src/a.js?./loaders/inline-loader.js");
+"use strict";
+
+
+var _p$getName, _p$getName2;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Animal = /*#__PURE__*/function () {
+  function Animal(name) {
+    _classCallCheck(this, Animal);
+    this.name = name;
+  }
+  _createClass(Animal, [{
+    key: "getName",
+    value: function getName() {
+      return this.name;
+    }
+  }]);
+  return Animal;
+}();
+var p = new Animal('老虎');
+p.getName();
+console.log(p === null || p === void 0 ? void 0 : (_p$getName = p.getName) === null || _p$getName === void 0 ? void 0 : _p$getName.call(p));
+console.log((_p$getName2 = p.getName()) !== null && _p$getName2 !== void 0 ? _p$getName2 : '');
 
 /***/ }),
 
@@ -104,8 +127,30 @@ eval("console.log('aaa')\n\n//# sourceURL=webpack:///./src/a.js?./loaders/inline
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// import './1.less'\nconsole.log(111);\n\n// const a = require('inline-loader!./a') // 行内loader，不需要在use中配置\n// !! 表示什么loader都不要，只有inline-loader\n// ! 表示不要normal loader\n// -! pre normal loader都不会执行\nvar a = __webpack_require__(/*! -!inline-loader!./a */ \"./loaders/inline-loader.js!./src/a.js\");\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+
+
+__webpack_require__(/*! ./1 */ "./src/1.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+var Person = /*#__PURE__*/function () {
+  function Person(name) {
+    _classCallCheck(this, Person);
+    this.name = name;
+  }
+  _createClass(Person, [{
+    key: "getName",
+    value: function getName() {
+      return this.name;
+    }
+  }]);
+  return Person;
+}();
+var p = new Person('zs');
+p.getName();
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=index.js.map

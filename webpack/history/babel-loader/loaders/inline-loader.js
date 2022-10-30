@@ -1,5 +1,6 @@
 function loader (source) {
-  console.log('loader2');
+  console.log('inline-loader');
+  console.log(source,'source===');
   return source
 }
 
