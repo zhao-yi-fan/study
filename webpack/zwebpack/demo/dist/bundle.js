@@ -29,9 +29,7 @@ document.head.appendChild(style);`);
     
     "./src/index.js": (function (module, exports, __webpack_require__) {
         eval(`const a = __webpack_require__("./src/a.js");
-
 __webpack_require__("./src/1.less");
-
 console.log(123);`);
     }),
     
