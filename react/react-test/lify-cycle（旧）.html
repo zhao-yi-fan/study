@@ -109,6 +109,14 @@
         return true
       }
 
+      componentWillMount () {
+        console.log('Son--componentWillMount');
+      }
+
+      componentDidMount () {
+        console.log('Son--componentDidMount');
+      }
+
       componentWillUpdate () {
         console.log('Son--componentWillUpdate');
       }
@@ -116,7 +124,7 @@
       componentDidUpdate () {
         console.log('Son--componentDidUpdate');
       }
-      
+
       render () {
         console.log('Son--render');
         return (

@@ -26,7 +26,7 @@
         clearTimeout(timer)
         // 使用箭头函数可以直接获取 上下文中的this, arguments
         timer = setTimeout(() => {
-          fun.apply(this, arguments)
+          fun.apply(this, arguments) // apply中需要传数组
         }, delay)
       }
     }

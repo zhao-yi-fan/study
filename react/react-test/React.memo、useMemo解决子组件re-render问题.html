@@ -16,6 +16,36 @@
   <script type="text/babel">
     const { useEffect, useMemo, useState } = React;
 
+    // class App extends React.PureComponent {
+    //   state = {
+    //     n: 0,
+    //     m: 0,
+    //   }
+    //   add = () => {
+    //     this.setState({
+    //       n: this.state.n
+    //     })
+    //   }
+    //   addChild = () => {
+    //     this.setState({
+    //       m: this.state.m + 1
+    //     })
+    //   }
+    //   render () {
+    //   console.log('App render')
+    //     return (
+    //       <div>
+    //         <div>
+    //           n:{this.state.n}
+    //           <button onClick={this.add}>n+1</button>
+    //           <button onClick={this.addChild}>m+1</button>
+    //         </div>
+    //         <hr />
+    //         <Child data={this.state.m} onClick={this.addChild} />
+    //       </div>
+    //     )
+    //   }
+    // }
     function App () {
       const [n, setN] = useState(0);
       const [m, setM] = useState(0);
@@ -29,10 +59,13 @@
 
       const onClickChild = useMemo(() => {
         return () => {
-          console.log(m);
+          setM(i => i + 1);
         }
       }, [m])
-
+      // const onClickChild = () => {
+      //   setM(i => i + 1);
+      // }
+      console.log('App render')
       return (
         <div>
           <div>
@@ -40,20 +73,23 @@
             <button onClick={add}>n+1</button>
             <button onClick={addChild}>m+1</button>
           </div>
-          <Child data={m} onClick={onClickChild} />
+          <hr />
+          <MemoChild data={m} onClick={onClickChild} />
         </div>
       )
     }
     function Child (props) {
-      console.log('child执行了')
+      console.log('child render')
       return (
-        <div onClick={props.onClick}>
+        <div>
           child:{props.data}
+          <button onClick={props.onClick}>m+1</button>
         </div>
       )
     }
     // 封装child
-    const Child2 = React.memo(Child)
+    const MemoChild = React.memo(Child)
+    const MemoApp = React.memo(App)
     ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>

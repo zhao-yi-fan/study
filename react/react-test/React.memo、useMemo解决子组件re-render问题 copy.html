@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="//unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
+  <script src="//unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
+  <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useEffect, useMemo, useState } = React;
+
+
+
+    let Child = ({ data, handleClick }) => {
+      console.log('Child render');
+      return (
+        <button onClick={handleClick}>{data.number}</button>
+      )
+    }
+    Child = React.memo(Child);
+
+    function App () {
+      console.log('App render');
+      const [name, setName] = React.useState('zhufeng');
+      const [number, setNumber] = React.useState(0);
+      let data = React.useMemo(() => ({ number }), [number]);
+      let handleClick = React.useCallback(() => setNumber(number + 1), [number]);
+      return (
+        <div>
+          <input type="text" value={name} onChange={event => setName(event.target.value)} />
+          <Child data={data} handleClick={handleClick} />
+        </div>
+      )
+    }
+
+    ReactDOM.render(
+      <App />,
+      document.getElementById('root')
+    );
+  </script>
+</body>
+
+</html>
