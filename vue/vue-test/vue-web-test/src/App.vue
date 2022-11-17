@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="aa">
     {{ obj.a }}
     {{ obj.b }}
     <button @click="onclick">点我+1</button>
@@ -23,4 +23,8 @@ export default {
   },
 };
 </script>
-<style lang="css"></style>
+<style lang="scss">
+.aa {
+  background-color: red;
+}
+</style>

@@ -8,7 +8,11 @@ module.exports = {
     filename: 'build.js',
     path: path.resolve(__dirname, 'build'),
   },
-  // watch: true,
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 20000,
+    poll: 1000
+  },
   devServer: {
     port: 8088,
     progress: true, // 加进度条
@@ -32,7 +36,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: ['sass-loader', 'vue-loader']
       },
       {
         test: /\.js$/,
@@ -45,6 +49,14 @@ module.exports = {
           }
         ]
       },
+      {
+        test: /\.c[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
     ]
   }
 }
