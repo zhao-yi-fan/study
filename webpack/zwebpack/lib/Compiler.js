@@ -39,25 +39,48 @@ class Compiler {
     }
   }
   getSource (modulePath) {
+    let parts = modulePath.replace(/^-?!+/g, '').split('!');
+    modulePath = parts.pop();
+    let inlineLoaders = parts;
+    let preLoaders = [], normalLoaders = [], postLoaders = [];
     const rules = this.config.module.rules;
     let source = fs.readFileSync(modulePath, 'utf8');
+    console.log(chalk.green(source, 'source===='));
+    let loaders = []; // 最终生效的loader
     rules.forEach(rule => {
       const { test, use } = rule;
-      let len = use.length - 1;
-      console.log(test.test(modulePath));
       if (test.test(modulePath)) {
-        function normalLoader () {
-          const loader = require(use[len--]);
-          console.log(chalk.yellow(loader, 'loader==='));
-          source = loader(source);
-          if (len >= 0) {
-            normalLoader();
-          }
+        if (rule.enforce === 'pre') {
+          preLoaders.push(...use)
+        } else if (rule.enforce === 'post') {
+          postLoaders.push(...use)
+        } else {
+          normalLoaders.push(...use)
         }
-        console.log(chalk.green(source, 'source===='));
-        normalLoader();
+        if (modulePath.startsWith('!!')) {
+          loaders = [...inlineLoaders]
+        } else if (modulePath.startsWith('!')) {
+          loaders = [...postLoaders, ...inlineLoaders, ...preLoaders]
+        } else if (modulePath.startsWith('-!')) {
+          loaders = [...postLoaders, ...inlineLoaders]
+        } else {
+          loaders = [...postLoaders, ...inlineLoaders, ...normalLoaders, ...preLoaders]
+        }
       }
     })
+    console.log(loaders, 'loaders==');
+    if (loaders.length) {
+      let len = loaders.length - 1;
+      function normalLoader () {
+        const loader = require(loaders[len--]);
+        source = loader(source);
+        if (len >= 0) {
+          normalLoader();
+        }
+      }
+      normalLoader();
+    }
+
     return source
   }
   buildModule (modulePath, isEntry) {
