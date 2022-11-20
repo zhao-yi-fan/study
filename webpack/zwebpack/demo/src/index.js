@@ -1,3 +1,2 @@
-const a = require('./a.js')
+require('inline-loader1!inline-loader2!./a.js')
 require('./1.less')
-console.log(123);

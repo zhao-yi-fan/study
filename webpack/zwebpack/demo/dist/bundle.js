@@ -17,7 +17,7 @@
 })
   ({
     
-    "./src/a.js": (function (module, exports, __webpack_require__) {
+    "./inline-loader1!inline-loader2!./src/a.js": (function (module, exports, __webpack_require__) {
         eval(`console.log('aaa');`);
     }),
     
@@ -28,9 +28,8 @@ document.head.appendChild(style);`);
     }),
     
     "./src/index.js": (function (module, exports, __webpack_require__) {
-        eval(`const a = __webpack_require__("./src/a.js");
-__webpack_require__("./src/1.less");
-console.log(123);`);
+        eval(`__webpack_require__("inline-loader1!inline-loader2!./src/a.js");
+__webpack_require__("./src/1.less");`);
     }),
     
   });
