@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'zredux';
+import * as redux from 'zredux';
 import store from '../store'
 import actions from '../store/actions/counter2'
 
-let boundActions = bindActionCreators(actions, store.dispatch)
+let boundActions = redux.bindActionCreators(actions, store.dispatch)
 /**
  * 组件关联仓库两个方向
  * 输入 组件里使用仓库提供的状态进行组件的渲染
