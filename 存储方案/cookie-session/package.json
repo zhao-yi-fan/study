@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.8.1",
-    "koa-router": "^7.4.0",
-    "koa-session": "^5.12.3",
-    "koa-views": "^6.2.0"
+    "koa": "2.8.1",
+    "koa-router": "7.4.0",
+    "koa-session": "5.12.3",
+    "koa-views": "6.2.0"
   }
 }

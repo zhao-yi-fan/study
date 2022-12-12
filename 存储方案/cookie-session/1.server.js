@@ -11,7 +11,7 @@ console.log(require('crypto').createHmac('sha1','zf').update('name=zf').digest('
 // cookie
 app.keys = ['zf'];
 router.get('/read', ctx => {
-  ctx.body = ctx.cookies.get(name);
+  ctx.body = ctx.cookies.get('name');
 })
 router.get('/write', ctx => {
   ctx.cookies.set('name', 'zf', { signed: true });
