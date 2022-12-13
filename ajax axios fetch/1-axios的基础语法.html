@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="//unpkg.com/axios/dist/axios.js"></script>
 </head>
 
 <body>
-    <script src="node_modules/axios/dist/axios.js"></script>
-    <script>
+    <script type="module">
         // 发送一个get请求
+        // http://localhost:3000/?name=zhufeng&age=9
         /* axios.get('http://localhost:3000/', {
             params: {
                 name: 'zhufeng',
@@ -31,52 +32,19 @@
                 lx: 12
             }
         });
-        promise.then(result => {
-            console.log(result);//服务器返回的不是直接传递回的数据, 而是一个对象
-            
-            // config: 基于axios发送请求的时候做的配置项(当前向服务器发送请求所使用的配置项)
-            // data: 从服务器获取的响应主体内容
-            // headers: 响应头信息
-            // request: 创建的AJAX实例(发送请求创建的)
-            // status: 状态码
-            // statusTest: 状态码的描述
-            
-        
-        }).catch(msg=>{
-            console.log(msg);//=> 请求失败的原因
-            
-        }) */
-
-        /* let promise = axios.post('https://www.easy-mock.com/mock/5cb165067aab7f78650d2087/example/mock2', {
-            name: 'cici',
-            age: 9
-        });
-        promise.then(result => {
-            console.log(result);
-
-        }).catch(msg => {
-            console.log(msg);
-
-        }) */
-
-        /* let promise = axios.head('package.json');
-        promise.then(result=>{
-            console.log(result);
-        }).catch(msg=>{
-            console.log(msg);
-        }) */
-
         //实际写法
 
-        axios.get('https://www.easy-mock.com/mock/5cb165067aab7f78650d2087/example/proxy').then(result => {
+        /* axios.get('https://www.easy-mock.com/mock/5cb165067aab7f78650d2087/example/proxy').then(result => {
             let { data } = result;
             console.log(data);
             return axios.post('https://www.easy-mock.com/mock/5cb165067aab7f78650d2087/example/add');
+        }, error=>{
+          console.log(error,'error===');
         }).then(result => {
             let { data } = result;
             console.log(data);
 
-        })
+        }) */
 
 
 
