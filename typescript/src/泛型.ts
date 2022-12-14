@@ -46,3 +46,15 @@ add({username: 'aaa'})
 console.log(get());
 del(1)
 console.log(get());
+
+
+
+class Person {
+  name:string;
+  constructor(name:string){
+    this.name = name
+  }
+}
+
+console.log(new Person('张三'));
+
