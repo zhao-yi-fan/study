@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Bar from './components/Bar.vue'
-import Foo from './components/Foo.vue'
+import Bar from './views/Bar.vue'
+import Foo from './views/Foo.vue'
 import VueMeta from 'vue-meta'
 
 Vue.use(VueMeta) // this.$meta
@@ -19,7 +19,7 @@ export default () => {
       {
         path: '/foo',
         // 动态路由导入
-        component: () => import('./components/Foo.vue')
+        component: () => import('./views/Foo.vue')
       }
     ]
   })

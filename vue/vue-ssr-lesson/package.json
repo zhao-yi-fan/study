@@ -24,7 +24,6 @@
     "vue-loader": "^15.7.1",
     "vue-meta": "^2.3.1",
     "vue-router": "^3.1.3",
-    "vue-server-renderer": "^2.6.10",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "vuex": "^3.1.1",
@@ -32,5 +31,9 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "vue-server-renderer": "^2.7.14",
+    "webpack-node-externals": "^3.0.0"
   }
 }

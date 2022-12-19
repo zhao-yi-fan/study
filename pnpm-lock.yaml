@@ -243,7 +243,7 @@ importers:
       vue-loader: ^15.7.1
       vue-meta: ^2.3.1
       vue-router: ^3.1.3
-      vue-server-renderer: ^2.6.10
+      vue-server-renderer: ^2.7.14
       vue-style-loader: ^4.1.2
       vue-template-compiler: ^2.6.10
       vuex: ^3.1.1
@@ -251,6 +251,7 @@ importers:
       webpack-cli: ^3.3.9
       webpack-dev-server: ^3.8.2
       webpack-merge: ^4.2.2
+      webpack-node-externals: ^3.0.0
     dependencies:
       '@babel/core': 7.20.5
       '@babel/plugin-syntax-dynamic-import': 7.8.3_@babel+core@7.20.5
@@ -261,9 +262,8 @@ importers:
       html-webpack-plugin: 3.2.0_webpack@4.46.0
       vue: 2.7.14
       vue-loader: 15.10.1_2bakwynmepxpml67rxxpd5j4y4
-      vue-meta: 2.4.0
+      vue-meta: 2.3.1
       vue-router: 3.6.5_vue@2.7.14
-      vue-server-renderer: 2.7.14
       vue-style-loader: 4.1.3
       vue-template-compiler: 2.7.14
       vuex: 3.6.2_vue@2.7.14
@@ -271,6 +271,9 @@ importers:
       webpack-cli: 3.3.12_webpack@4.46.0
       webpack-dev-server: 3.11.3_i3w7szmgtxghzdij4arpgmor5i
       webpack-merge: 4.2.2
+    devDependencies:
+      vue-server-renderer: 2.7.14
+      webpack-node-externals: 3.0.0
 
   vue/vue-test/vue-web-test:
     specifiers:
@@ -7490,6 +7493,7 @@ packages:
   /chokidar/3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
     engines: {node: '>= 8.10.0'}
+    requiresBuild: true
     dependencies:
       anymatch: 3.1.3
       braces: 3.0.2
@@ -11281,6 +11285,7 @@ packages:
 
   /hash-sum/2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
+    dev: true
 
   /hash.js/1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
@@ -13634,7 +13639,7 @@ packages:
 
   /lodash._reinterpolate/3.0.0:
     resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
-    dev: false
+    dev: true
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
@@ -13670,13 +13675,13 @@ packages:
     dependencies:
       lodash._reinterpolate: 3.0.0
       lodash.templatesettings: 4.2.0
-    dev: false
+    dev: true
 
   /lodash.templatesettings/4.2.0:
     resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
     dependencies:
       lodash._reinterpolate: 3.0.0
-    dev: false
+    dev: true
 
   /lodash.transform/4.6.0:
     resolution: {integrity: sha512-LO37ZnhmBVx0GvOU/caQuipEh4GN82TcWv3yHlebGDgOxbxiwwzW5Pcx2AcvpIv2WmvmSMoC492yQFNhy/l/UQ==}
@@ -17775,7 +17780,7 @@ packages:
   /source-map/0.5.6:
     resolution: {integrity: sha512-MjZkVp0NHr5+TPihLcadqnlVoGIoWo4IBHptutGh9wI3ttUYvCG26HkSuDi+K6lsZ25syXJXcctwgyVCt//xqA==}
     engines: {node: '>=0.10.0'}
-    dev: false
+    dev: true
 
   /source-map/0.5.7:
     resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==}
@@ -19330,8 +19335,8 @@ packages:
       webpack: 4.46.0_webpack-cli@3.3.12
     dev: true
 
-  /vue-meta/2.4.0:
-    resolution: {integrity: sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==}
+  /vue-meta/2.3.1:
+    resolution: {integrity: sha512-hnZvDNvLh+PefJLfYkZhG6cSBNKikgQyiEK8lI/P2qscM1DC/qHHOfdACPQ/VDnlaWU9VlcobCTNyVtssTR4XQ==}
     dependencies:
       deepmerge: 4.2.2
     dev: false
@@ -19354,7 +19359,7 @@ packages:
       resolve: 1.22.1
       serialize-javascript: 6.0.0
       source-map: 0.5.6
-    dev: false
+    dev: true
 
   /vue-style-loader/4.1.3:
     resolution: {integrity: sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg==}
@@ -19862,6 +19867,11 @@ packages:
     dependencies:
       clone-deep: 4.0.1
       wildcard: 2.0.0
+    dev: true
+
+  /webpack-node-externals/3.0.0:
+    resolution: {integrity: sha512-LnL6Z3GGDPht/AigwRh2dvL9PQPFQ8skEpVrWZXLWBYmqcaojHNN0onvHzie6rq7EWKrrBfPYqNEzTJgiwEQDQ==}
+    engines: {node: '>=6'}
     dev: true
 
   /webpack-sources/1.4.3:
