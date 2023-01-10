@@ -36,10 +36,12 @@
 
 
     /* 需要再浏览器界面操作一下，然后刷新或者关闭才会触发 */
-    // window.onbeforeunload = function (event) {
-    //   var e = window.event || event;
-    //   e.returnValue = '确定关闭么？'
-    // }
+    window.onbeforeunload = function (event) {
+      console.log('每次执行');
+      var confirmationMessage = "你确定要离开吗？";
+      (event || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;
+    }
   </script>
 </body>
 
