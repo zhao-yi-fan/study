@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="//unpkg.com/react@17.0.2/umd/react.development.js" crossorigin></script>
+  <script src="//unpkg.com/react-dom@17.0.2/umd/react-dom.development.js" crossorigin></script>
+  <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useEffect, useMemo, useState } = React;
+
+    function App () {
+      const [number, setNumber] = useState(0);
+
+      const add = () => {
+        setNumber(number + 1);
+      }
+
+      const unmount = () => {
+        ReactDOM.unmountComponentAtNode(document.querySelector('#root'))
+      }
+
+      useEffect(() => {
+        console.log('number: ', number)
+        return () => {
+          console.log('unmount: ', number) // 依赖如果是空数组 则number是旧的值
+        }
+      }, [])
+
+      return (
+        <div>
+          number: {number}
+          <br />
+          <button onClick={add}>add</button>
+          <button onClick={unmount}>卸载</button>
+        </div>
+      )
+    }
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>
