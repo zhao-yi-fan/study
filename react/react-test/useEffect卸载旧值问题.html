@@ -16,11 +16,38 @@
   <script type="text/babel">
     const { useEffect, useMemo, useState } = React;
 
+    // 闭包与hooks经典的坑
+    function Test () {
+      let num = 0;
+      function effect () {
+        num++
+        const message = `num: ${num}`;
+        console.log(message)
+        return function unmount () {
+          console.log('unmount: ', message)
+        }
+      }
+      return effect;
+    }
+    // 执行test，返回effect函数
+    const add = Test()
+    // 执行effect函数，返回引用了message1的unmount函数
+    const unmount = add()
+    // 再次执行effect函数，返回引用了message2的unmount函数
+    add()
+    // message3
+    add()
+    // message4
+    add()
+    // 执行unmount函数，打印message1
+    unmount()
+
     function App () {
       const [number, setNumber] = useState(0);
 
       const add = () => {
         setNumber(number + 1);
+        console.log('add: ', number);
       }
 
       const unmount = () => {
