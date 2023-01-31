@@ -55,9 +55,16 @@
       }
 
       useEffect(() => {
-        console.log('number: ', number)
+        console.log('依赖number: ', number)
         return () => {
-          console.log('unmount: ', number) // 依赖如果是空数组 则number是旧的值
+          console.log('依赖unmount: ', number) // 依赖number卸载时是新值，且每次都会执行
+        }
+      }, [number])
+
+      useEffect(() => {
+        console.log('不依赖number: ', number)
+        return () => {
+          console.log('不依赖unmount: ', number) // 依赖如果是空数组 则卸载时 number是旧的值
         }
       }, [])
 
