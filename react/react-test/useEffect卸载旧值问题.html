@@ -13,8 +13,21 @@
 
 <body>
   <div id="root"></div>
+  <div id="log" style="line-height: 0;margin-top: 10px;">
+    日志:
+  </div>
   <script type="text/babel">
-    const { useEffect, useMemo, useState } = React;
+    /* 日志 */
+    console.oldLog = console.log
+    console.log = function (...args) {
+      console.oldLog(...args)
+      const p = document.createElement('p')
+      p.innerText = args.join(' ')
+      log.appendChild(p)
+    }
+    /* 日志 */
+
+    const { useEffect, useMemo, useState, useRef } = React;
 
     // 闭包与hooks经典的坑
     function Test () {
@@ -42,8 +55,10 @@
     // 执行unmount函数，打印message1
     unmount()
 
+
     function App () {
       const [number, setNumber] = useState(0);
+      const oldNumber = useRef(number).current
 
       const add = () => {
         setNumber(number + 1);
@@ -53,14 +68,7 @@
       const unmount = () => {
         ReactDOM.unmountComponentAtNode(document.querySelector('#root'))
       }
-
-      useEffect(() => {
-        console.log('依赖number: ', number)
-        return () => {
-          console.log('依赖unmount: ', number) // 依赖number卸载时是新值，且每次都会执行
-        }
-      }, [number])
-
+      // 方式1：闭包的方式。在卸载时，要使用初始的值，那么就不能依赖number
       useEffect(() => {
         console.log('不依赖number: ', number)
         return () => {
@@ -68,6 +76,14 @@
         }
       }, [])
 
+      // 方式2：react建议使用值的变量必须依赖，要使用初始的值，那么就要使用useRef。
+      useEffect(() => {
+        console.log('依赖number: ', number)
+        return () => {
+          console.log('依赖unmount number: ', number)
+          console.log('依赖unmount useRef: ', oldNumber) // 依赖number卸载时是新值，且每次都会执行
+        }
+      }, [number])
       return (
         <div>
           number: {number}
