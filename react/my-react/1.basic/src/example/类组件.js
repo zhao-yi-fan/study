@@ -1,5 +1,5 @@
-import React from './react'
-import ReactDOM from './react-dom'
+import React from '../react'
+import ReactDOM from '../react-dom'
 
 // React.createElement会返回一个React元素 
 // react元素是一个普通的js对象，它描述了dom的内容，常说的虚拟dom
