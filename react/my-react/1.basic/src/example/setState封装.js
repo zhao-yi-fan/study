@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from '../react'
+import ReactDOM from '../react-dom'
 
 /* 
 setState什么时候是同步的，什么时候是异步的
