@@ -13,7 +13,7 @@ class Counter extends React.Component {
     // 只有在构造函数中才直接给this.state赋值
     this.state = { number: 0, age: 10 }
   }
-  handleClick = (event) => {
+  handleClick = (syntheticEvent) => {
     // setState参数是新的状态对象，这个新状态对象会合并到老状态对象上。
     // 老状态没有的属性会添加，老状态有的属性会被覆盖
     // state状态的更新是批量的，是异步执行的
@@ -42,8 +42,8 @@ class Counter extends React.Component {
       this.setState({ number: this.state.number + 1 })
       console.log(this.state.number); // => 3
     }, 1000);
-
-
+    // console.log(syntheticEvent.stopPropagation);
+    // syntheticEvent.stopPropagation();
 
     // this.setState((state) => ({ number: state.number + 1 }))
 
@@ -56,9 +56,13 @@ class Counter extends React.Component {
     // Cannot add property title, object is not extensible
     // this.props.title = '新标题';
   }
+
+  divHandleClick = (syntheticEvent) => {
+    console.log('syntheticEvent');
+  }
   render () {
     return (
-      <div>
+      <div onClick={this.divHandleClick}>
         <p>{this.props.title}</p>
         <p>number:{this.state.number}</p>
         <p>age:{this.state.age}</p>
