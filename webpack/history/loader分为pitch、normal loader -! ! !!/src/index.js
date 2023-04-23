@@ -10,4 +10,5 @@ console.log(111);
 // !! 禁用前置 后置 普通loader，只有inline-loader
 // ! 表示不要普通 loader
 // -! 禁用前置 普通 loader
+// !- 禁用普通 后置 loader
 const a = require('-!inline-loader!./a') 
