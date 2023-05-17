@@ -59,11 +59,4 @@
 // a: 3. 服务器推送
 
 
-// q: https http属于什么知识？
-// a: http属于应用层协议
-// q: https http属于应用层协议，那么https属于什么协议
-// a: https属于传输层协议
-// q: https属于传输层协议，那么http2属于什么协议
-// a: http2属于应用层协议
 
-// q: 
