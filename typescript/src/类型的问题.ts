@@ -12,7 +12,7 @@ let name1 = 'zhufeng';
 let number1:number = 11;
 let number2:Number = 11;
 let number3:number = Number(11); // 11
-// let number4:number=new Number(11)//{}错误语法不能把实例赋予给基本类型
+let number4:number=new Number(11)//{}错误语法不能把实例赋予给基本类型
 //类也是一个类型他可以描述实例
 let number5:Number = new Number(11)
 
