@@ -56,12 +56,12 @@
       const addChild = () => {
         setM(i => i + 1);
       };
-
+      // 如果不用useMemo，每次点击n+1，都会使onClickChild重新生成，导致子组件re-render
       const onClickChild = useMemo(() => {
         return () => {
           setM(i => i + 1);
         }
-      }, [m])
+      }, [])
       // const onClickChild = () => {
       //   setM(i => i + 1);
       // }
