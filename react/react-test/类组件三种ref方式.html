@@ -61,7 +61,7 @@
             <br />
 
             <p>2 ref回调函数</p>
-            <span onClick={this.changeData}>点击更新天气 {isHot ? '炎热' : '凉爽'}</span>
+            <button onClick={this.changeData}>点击更新天气 {isHot ? '炎热' : '凉爽'}</button>
             <br />
             {/* ref回调写在内联中，组件更新时会执行两次，第一次是null */}
             <input onBlur={this.blurHandle} ref={c => { this.input2 = c; console.log('内联ref', c); }} type="text" placeholder="ref回调内联" />
