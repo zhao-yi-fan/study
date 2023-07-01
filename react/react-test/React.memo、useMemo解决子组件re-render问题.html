@@ -14,7 +14,7 @@
 <body>
   <div id="root"></div>
   <script type="text/babel">
-    const { useEffect, useMemo, useState } = React;
+    const { useEffect, useMemo, useState, useCallback } = React;
 
     // class App extends React.PureComponent {
     //   state = {
@@ -57,7 +57,12 @@
         setM(i => i + 1);
       };
       // 如果不用useMemo，每次点击n+1，都会使onClickChild重新生成，导致子组件re-render
-      const onClickChild = useMemo(() => {
+      /* const onClickChild = useMemo(() => {
+        return () => {
+          setM(i => i + 1);
+        }
+      }, []) */
+      const onClickChild = useCallback(() => {
         return () => {
           setM(i => i + 1);
         }
@@ -74,7 +79,7 @@
             <button onClick={addChild}>m+1</button>
           </div>
           <hr />
-          <MemoChild data={m} onClick={onClickChild} />
+          <Child data={m} onClick={onClickChild} />
         </div>
       )
     }

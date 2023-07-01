@@ -42,9 +42,8 @@
         console.log('绑定ref', c);
       }
       changeData = () => {
-        const { isHot } = this.state
         this.setState({
-          isHot: !isHot
+          isHot: !this.state.isHot
         })
       }
 
