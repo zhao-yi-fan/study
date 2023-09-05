@@ -13,7 +13,6 @@ class ChainedMap extends Chainable {
   }
   getOrCompute (key, factory) {
     if (!this.has(key)) {
-      console.log(factory,'factory===');
       this.set(key, factory());
       return this.get(key);
     }

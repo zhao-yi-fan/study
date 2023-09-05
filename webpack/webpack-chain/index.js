@@ -5,7 +5,7 @@ class Config extends ChainedMap {
   constructor() {
     super()
     this.entryPoints = new ChainedMap(this)
-    this.output = new Output() // output其实就是一个ChainedMap
+    this.output = new Output(this) // output其实就是一个ChainedMap
   }
 
   //添加一个入口
