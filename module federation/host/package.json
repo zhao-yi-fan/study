@@ -1,10 +1,10 @@
 {
-  "name": "remote",
+  "name": "hosts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ../../bin/zmp dev"
+    "dev": "zmp dev"
   },
   "keywords": [],
   "author": "",
