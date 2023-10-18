@@ -1,17 +1,15 @@
 import * as htmlparser2 from "htmlparser2";
+import mustache from "mustache";
 
 const parser = new htmlparser2.Parser({
   onopentag(name, attributes) {
-    /*
-     * This fires when a new tag is opened.
-     *
-     * If you don't need an aggregated `attributes` object,
-     * have a look at the `onopentagname` and `onattribute` events.
-     */
+    const tokens = mustache.parse(name);
+    console.log("onopentag: ", arguments);
     if (name === "script" && attributes.type === "text/javascript") {
       console.log("JS! Hooray!");
     }
   },
+
   ontext(text) {
     /*
      * Fires whenever a section of text was processed.
@@ -29,12 +27,18 @@ const parser = new htmlparser2.Parser({
      * equivalent opening tag before. Closing tags without corresponding
      * opening tags will be ignored.
      */
+    console.log("close tag: ", tagname);
     if (tagname === "script") {
       console.log("That's it?!");
     }
   },
+  oncomment: function (comment) {
+    /*
+     * Fires when a comment is encountered.
+     */
+    console.log("comment: ", comment);
+  },
 });
-parser.write(
-  "Xyz <script type='text/javascript'>const foo = '<<bar>>';</script>"
-);
+const vueStr = `<br id="1"/><div! class="tabBox">你好，我是{{name}}</div!><br id="2"/>`;
+parser.write(vueStr);
 parser.end();

@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "htmlparser2": "^9.0.0"
+    "htmlparser2": "^9.0.0",
+    "mustache": "^4.2.0"
   },
   "type": "module"
 }
