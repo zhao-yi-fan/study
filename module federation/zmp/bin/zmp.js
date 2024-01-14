@@ -15,7 +15,7 @@ program.command('init')
   })
 program.command('dev')
   .description('启动开发服务器')
-  .option('-t，--template [template]', 'JSON数据 HTTP的地址或者是文件的相对或绝对路径')
+  .option('-t,--template [template]', 'JSON数据 HTTP的地址或者是文件的相对或绝对路径')
   .action((options) => {
     cli.exec('dev', options);
   });

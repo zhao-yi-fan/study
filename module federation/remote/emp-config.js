@@ -5,7 +5,8 @@ module.exports = {
   empShare: {
     name: 'remote',
     exposes: {
-      './App': './src/App'
+      './App': './src/App',
+      './test': './src/test'
     }
   }
 }
