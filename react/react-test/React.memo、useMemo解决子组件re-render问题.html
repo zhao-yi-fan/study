@@ -23,7 +23,7 @@
     //   }
     //   add = () => {
     //     this.setState({
-    //       n: this.state.n
+    //       n: this.state.n + 1
     //     })
     //   }
     //   addChild = () => {
@@ -63,9 +63,7 @@
         }
       }, []) */
       const onClickChild = useCallback(() => {
-        return () => {
-          setM(i => i + 1);
-        }
+        setM(i => i + 1);
       }, [])
       // const onClickChild = () => {
       //   setM(i => i + 1);
