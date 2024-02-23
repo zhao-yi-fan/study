@@ -4,6 +4,7 @@ import mustache from "mustache";
 const parser = new htmlparser2.Parser({
   onopentag(name, attributes) {
     const tokens = mustache.parse(name);
+    console.log("name:", name, "tokens: ", tokens);
     console.log("onopentag: ", arguments);
     if (name === "script" && attributes.type === "text/javascript") {
       console.log("JS! Hooray!");
