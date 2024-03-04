@@ -4,15 +4,15 @@
  */
 
 
-// var a = 12;
-// function fn () {
-//     console.log(a);
-// }
-// function sum () {
-//     var a = 120;
-//     fn();
-// }
-// sum();
+/* var a = 12;
+function fn () {
+    console.log(a);
+}
+function sum () {
+    var a = 120;
+    fn();
+}
+sum(); */
 
 
 // var a = 20;
