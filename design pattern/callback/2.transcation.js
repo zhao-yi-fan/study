@@ -22,11 +22,11 @@ transaction.perform(oldFunc, [{
     console.log('关闭1')
   },
   {
-  initialize () {
-    console.log('初始化2')
-  },
-  close () {
-    console.log('关闭2')
+    initialize () {
+      console.log('初始化2')
+    },
+    close () {
+      console.log('关闭2')
+    }
   }
-}
 }]);
