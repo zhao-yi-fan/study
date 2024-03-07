@@ -72,10 +72,6 @@ fs.readdir('./css', (err, result) => {
 }) */
 //==================================
 
-/* let { readFile } = require('./utils/fsPromise');
-readFile('less/1.css').then(result => {
-    console.log(result);
-}); */
 //=> 合并并且压缩CSS
 let { readFile, readdir, writeFile } = require('./utils/fsPromise');
 // 1. 先把所有的CSS文件读取出来
