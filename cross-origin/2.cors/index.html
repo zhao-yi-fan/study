@@ -14,7 +14,7 @@
     xhr.open('post', 'http://localhost:4000/getData', true);
     // document.cookie = 'aaa=zyf;'
     // xhr.withCredentials = true;
-    // xhr.setRequestHeader('name', 'zfpx');
+    xhr.setRequestHeader('name', 'zfpx');
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
@@ -24,7 +24,7 @@
 
       }
     }
-    xhr.send(JSON.stringify({aaa:1,bbb:2}))
+    xhr.send(JSON.stringify({name:'测试人员',bbb:2}))
   </script>
 </body>
 
