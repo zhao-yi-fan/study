@@ -1,13 +1,4 @@
 var Utils = {
-  statusFunction: function () {
-    var status = 0;
-    if (status == 0) {
-      for (var i = 0; i < 5; i++) {
-        status += i;
-        console.log(status)
-      }
-    }
-  },
   /**
    * @author: zhaoyifan
    * @Date: 2020-04-17 16:42:30
