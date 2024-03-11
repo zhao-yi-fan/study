@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "htmlparser2": "^9.0.0",
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "ora": "^8.0.1"
   },
   "type": "module"
 }
