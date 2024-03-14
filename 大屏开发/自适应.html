@@ -10,11 +10,13 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      overflow: hidden;
     }
+
     .screen {
-      width: 100vw;
-      height: 100vh;
       background-color: #333;
+      transform-origin: 0px 0px;
+      transition: all 0s ease 0s;
     }
   </style>
 </head>
@@ -24,19 +26,21 @@
 
   <script>
     function handleScreenAuto () {
-      const w = 1920;
-      const h = 960;
+      const w = 1440; // 设计稿的宽度
+      const h = 754; // 设计稿的高度
       const clientWidth = document.documentElement.clientWidth;
       const clientHeight = document.documentElement.clientHeight;
-      console.log(clientWidth, clientHeight);
       const scaleW = clientWidth / w;
       const scaleH = clientHeight / h;
-      console.log(scaleW, scaleH);
-      const scale = clientWidth / clientHeight < w / h ? scaleW : scaleH;
-      let transformScale = `scale(${scale})`;
-
-      document.querySelector('.screen').style.transform = transformScale;
-
+      let scale = 1;
+      if (clientWidth / clientHeight < w / h) {
+        scale = scaleW;
+        document.querySelector('.screen').style.height = `${clientHeight / scale}px`
+      } else {
+        scale = scaleH;
+        document.querySelector('.screen').style.width = `${clientWidth / scale}px`
+      }
+      document.querySelector('.screen').style.transform = `scale(${scale}) `;
     }
     window.addEventListener('resize', function () {
       handleScreenAuto()
