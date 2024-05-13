@@ -29,5 +29,3 @@ function getParams(url) {
   }
   return res
 }
-
-console.log(getParams('https://sit-hxjf.hongxinshop.com/hxtms-freight-platform/aaaa?uuid=123&id=1&a=2&str=中文'));
