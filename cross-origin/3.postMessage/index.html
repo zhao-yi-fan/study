@@ -10,11 +10,17 @@
 
 <body>
   <div>father</div>
-  <iframe src="./other.html" frameborder="0"></iframe>
-  <iframe src="http://localhost:4000/other.html" frameborder="0"></iframe>
+  <iframe src="./other.html"></iframe>
+  <iframe src="http://localhost:4000/other.html"></iframe>
   <script>
-    window.addEventListener('message',function (res){
+    window.addEventListener('message', function (res) {
       console.log(res)
+      if (res.origin === 'http://localhost:4000') {
+        console.log('来自子页面的消息', res.data)
+      }
+      if (res.origin === 'http://localhost:3000') {
+        console.log('来自其他页面的消息', res.data)
+      }
     })
   </script>
 </body>
