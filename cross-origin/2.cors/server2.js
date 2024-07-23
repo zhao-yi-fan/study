@@ -39,12 +39,12 @@ app.post('/getData', function (req, res) {
 });
 app.put('/getData', function (req, res) {
   console.log(req.headers);
-  res.end('我不爱你')
+  res.end('数据响应')
 
 })
 app.get('/getData', function (req, res) {
   console.log(req.headers);
-  res.end('我不爱你')
+  res.end('数据响应')
 
 })
 app.use(express.static(__dirname))
