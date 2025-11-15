@@ -1,8 +1,25 @@
 Promise.myRace = function (promises) {
   return new Promise((resolve, reject) => {
     const arr = Array.from(promises);
-    arr.forEach((promise) => {
-      Promise.resolve(promise).then(resolve, reject);
+    let settled = false;
+
+    if (arr.length === 0) return;
+
+    arr.forEach((p) => {
+      Promise.resolve(p).then(
+        (val) => {
+          if (!settled) {
+            settled = true;
+            resolve(val);
+          }
+        },
+        (err) => {
+          if (!settled) {
+            settled = true;
+            reject(err);
+          }
+        }
+      );
     });
   });
 };

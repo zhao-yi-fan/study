@@ -32,20 +32,27 @@
     }
 
     // 规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。
-    function throttle (fun, delay) {
-      let last, timer;
-      return function () {
-        let now = +new Date();
-        clearTimeout(timer)
-        if (last && now < last + delay) {
+    function throttle (fn, delay) {
+      let last = 0;
+      let timer = null;
+
+      return function (...args) {
+        const now = Date.now();
+        const remaining = delay - (now - last);
+
+        if (remaining <= 0) {
+          clearTimeout(timer);
+          timer = null;
+          last = now;
+          fn.apply(this, args);
+        } else if (!timer) {
           timer = setTimeout(() => {
-            fun.apply(this, arguments)
-          }, delay)
-        } else {
-          last = now
-          fun.apply(this, arguments)
+            last = Date.now();
+            timer = null;
+            fn.apply(this, args);
+          }, remaining);
         }
-      }
+      };
     }
 
     function changeDEInput (e) {
@@ -62,7 +69,7 @@
       console.log(e.target.value, new Date());
     }
 
-    throttleInpt.onkeyup = throttle(changeTHInput, 500)
+    throttleInpt.onkeyup = throttle(changeTHInput, 2000)
 
 
   </script>

@@ -1,21 +1,19 @@
 Promise.myAll = function (promises) {
   return new Promise((resolve, reject) => {
     const arr = Array.from(promises);
-    if (arr.length === 0) {
-      return resolve([]);
-    }
+    if (arr.length === 0) return resolve([]);
     let count = 0;
-    const result = [];
+    const result = new Array(arr.length);
     arr.forEach((promise, index) => {
-      promise
-        .then((res) => {
-          count++;
+      Promise.resolve(promise).then(
+        (res) => {
           result[index] = res;
-          if (count === arr.length) {
+          if (++count === arr.length) {
             resolve(result);
           }
-        })
-        .catch(reject);
+        },
+        (err) => reject(err)
+      );
     });
   });
 };
