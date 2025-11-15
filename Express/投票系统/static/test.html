@@ -5,8 +5,8 @@
     <title>珠峰培训-接口测试</title>
 </head>
 <body>
-<script src="js/axios.min.js"></script>
-<script src="js/md5.min.js"></script>
+<script src="//unpkg.com/axios/dist/axios.js"></script>
+<script src="//unpkg.com/blueimp-md5@2.19.0/js/md5.min.js"></script>
 <script>
     axios.defaults.baseURL = 'http://localhost:8686';
     axios.interceptors.response.use(result => result.data);//=>增加响应拦截器,在所有AXIOS请求成功后,把获取的结果中DATA单独返回(DATA就是服务器返回的JSON数据)
