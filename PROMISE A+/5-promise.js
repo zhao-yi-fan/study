@@ -1,7 +1,7 @@
 // 非管控异步操作
 new Promise((resolve, reject) => {
   // resolve 和 reject是自己任意执行的，但是一般情况下，大家够约定成功执行resolve，失败执行reject
-  // excutor函数（执行函数）中可以不管控异步操作（但是不管控异步没什么意义）
+  // executor函数（执行函数）中可以不管控异步操作（但是不管控异步没什么意义）
   resolve(100);
 }).then(result => {
   // resolve执行的时候会触发第一个回调函数执行
@@ -16,6 +16,3 @@ new Promise((resolve, reject) => {
   // catch就相当于then(null,reason=>{})
 })
 console.log(3)
-
-// 等待所有的promise都成功执行then，反之只要有一个失败就会执行catch
-Promise.all([promise1,promise2,promise3,promise4]).then();

@@ -1,11 +1,11 @@
 class Promise {
-  constructor(excutorCallback) {
+  constructor(executorCallback) {
     this.status = 'pending'
     this.value = undefined;
     this.fulfilledAry = [];
     this.rejectedAry = [];
 
-    // 执行excutor（异常捕获）
+    // 执行executor（异常捕获）
     let resolveFn = result => {
       let timer = setTimeout(() => {
         clearTimeout(timer);
@@ -26,7 +26,7 @@ class Promise {
       }, 0);
     }
     try {
-      excutorCallback(resolveFn, rejectFn); // 返回两个回调函数，每个回调函数都需要传参
+      executorCallback(resolveFn, rejectFn); // 返回两个回调函数，每个回调函数都需要传参
     } catch (err) {
       rejectFn(err);
     }
