@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div id="aa">
     <p></p>
     <p></p>
@@ -46,7 +46,7 @@
     <b>18</b>
     <b>19</b>
   </div>
-</template> -->
+</template>
 
 <script>
 export default {
@@ -59,11 +59,6 @@ export default {
   methods: {},
   mounted() {
     console.log("aa");
-  },
-  render(){
-    return (
-      <div>222</div>
-    )
   }
 };
 </script>
