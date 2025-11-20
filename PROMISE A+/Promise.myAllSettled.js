@@ -17,7 +17,7 @@ Promise.myAllSettled = function (promises) {
         .catch((reason) => {
           result[i] = {
             state: "rejected",
-            reason
+            reason,
           };
         })
         .finally(() => {
@@ -29,6 +29,6 @@ Promise.myAllSettled = function (promises) {
   });
 };
 
-Promise.myAllSettled([Promise.resolve(1), Promise.reject('err'), 3, 4]).then(
+Promise.myAllSettled([Promise.resolve(1), Promise.reject("err"), 3, 4]).then(
   console.log
 );

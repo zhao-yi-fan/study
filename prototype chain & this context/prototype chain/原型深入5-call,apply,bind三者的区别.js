@@ -1,6 +1,6 @@
 // let fn = function (a, b){
 //     console.log(this, a, b);
-    
+
 // }
 // let obj = {name: "obj"};
 // 非严格模式下
@@ -15,8 +15,6 @@
  *      2. 严格模式下, 第一个参数是谁, this就指向谁(包括null/undefined), 不传this是undefined
  */
 
-
-
 /**
  * apply: 和call基本上一模一样, 唯一区别在于传参方式
  *      fn.call(obj, 10, 20)
@@ -29,20 +27,15 @@
  *      fn.bind(obj,10,20) 改变fn中的this, 此时的fn并没有执行(不兼容IE6~8, 目前已经不用考虑IE6~8)
  */
 
-"use strict"
-let fn = function (a, b){
-    console.log(this);
-    
-}
-let obj = {name: "obj"};
+"use strict";
+let fn = function (a, b) {
+  console.log(this);
+};
+let obj = { name: "obj" };
 // document.onclick = fn;// 把fn绑定给点击事件, 点击的时候执行fn
 // document.onclick = fn();// 在绑定的时候, 先把fn执行, 把执行的返回值(undefined)绑定给事件, 当点击的时候执行的是undefined
 
 // 需求: 点击的时候执行fn, 让fn中的this是obj
-document.onclick = fn;// this:obj
-document.onclick = fn.call(obj);// 虽然this确实改为obj了, 但是绑定的时候就把fn执行了(call是立即执行函数), 点击的时候执行的是fn的返回值undefined
-document.onclick = fn.bind(obj);// bind属于把fn中的this预处理为obj, 此时fn没有执行, 当点击的时候才会把fn执行
-
-
-
-
+document.onclick = fn; // this:obj
+document.onclick = fn.call(obj); // 虽然this确实改为obj了, 但是绑定的时候就把fn执行了(call是立即执行函数), 点击的时候执行的是fn的返回值undefined
+document.onclick = fn.bind(obj); // bind属于把fn中的this预处理为obj, 此时fn没有执行, 当点击的时候才会把fn执行

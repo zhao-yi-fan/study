@@ -1,43 +1,43 @@
-class TaskPro {
-  constructor(list) {
-    this.tasks = list || [];
+class KoaLike {
+  constructor() {
+    this.middlewares = [];
   }
-  addTask(fn) {
-    this.tasks.push(fn);
+
+  use(fn) {
+    this.middlewares.push(fn);
   }
+
   async run() {
-    const next = async () => {
-      await fn();
+    const dispatch = async (index) => {
+      if (index >= this.middlewares.length) return;
+      const middleware = this.middlewares[index];
+      await middleware(() => dispatch(index + 1));
     };
-    const fn = async () => {
-      if (this.tasks.length) {
-        await this.tasks.shift()(next);
-        await fn();
-      }
-    };
-    await fn();
+    return dispatch(0);
   }
 }
 
+
 // 洋葱模型
-const app = new TaskPro();
-app.addTask(async (next) => {
+const app = new KoaLike();
+
+app.use(async (next) => {
   console.log(1);
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  });
-  next();
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  await next();
   console.log(4);
 });
 
-app.addTask((next) => {
+app.use(async (next) => {
   console.log(2);
-  // 不执行next，仍然会执行下一个任务
+  await next();
+  console.log(5);
 });
-app.addTask((next) => {
+
+app.use(async (next) => {
   console.log(3);
+  await next();
+  console.log(6);
 });
 
 app.run();

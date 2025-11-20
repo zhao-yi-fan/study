@@ -14,18 +14,17 @@
  * 三种角色间没有必然关系
  */
 
-
 // function Fn() {
 //     var n = 10;
 //     this.m = 100;
 // }
 // Fn.prototype.aa = function () {
 //     console.log('aa');
-    
+
 // };
 // Fn.bb = function () {
 //     console.log('bb');
-    
+
 // };
 // 普通函数
 // Fn(); // this: window  有一个私有变量n  和原型以及属性bb没有关系
@@ -43,24 +42,20 @@
 // console.dir(Number);
 // console.dir(Array);
 
-
-
 //==========================================
 // JQ这个类库中提供了很多的方法, 其中有一部分是写在原型上的, 有一部分是把它当做普通对象来设置的
-~function () {
-    function jQuery() {
-        //...
-        return [JQ实例]
-    }
-    jQuery.prototype.animate = function () {}
+~(function () {
+  function jQuery() {
     //...
-    jQuery.ajax = function () {}
-    //...
-    window.jQuery = window.$ = jQuery
-}();
-$().ajax();//=> 调取不了
-$().animate();//=> 这样可以调取
-$.ajax();//=> 直接的对象键值对操作
-$.animate();//=> 对象上没有animate这个属性, 这个属性在和实例相关的原型上
-
-
+    return [JQ实例];
+  }
+  jQuery.prototype.animate = function () {};
+  //...
+  jQuery.ajax = function () {};
+  //...
+  window.jQuery = window.$ = jQuery;
+})();
+$().ajax(); //=> 调取不了
+$().animate(); //=> 这样可以调取
+$.ajax(); //=> 直接的对象键值对操作
+$.animate(); //=> 对象上没有animate这个属性, 这个属性在和实例相关的原型上
